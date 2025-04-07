@@ -1,0 +1,12 @@
+{
+  "name": "exercises",
+  "version": "1.0.0",
+  "description": "- 各練習問題の解答は `chXX/exYY` 以下に作成しなさい。例えば練習問題 1.1 (1 章の 1 問目) は `c01/ex01` 以下に解答を作成しなさい。",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
