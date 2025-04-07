@@ -1,0 +1,38 @@
+・予想
+変数life.answerに対して、console.logが２つ記載されており、１回目と２回目の出力の間に、変数の値が変更されている。
+１回目の出力では42、２回目の出力では０が表示されると予想する。
+
+・結果
+Object iについて、以下の結果が出力された。
+
+index.html:6
+Object i
+ answer: 0
+
+index.html:8
+Object i
+ anser: 0
+
+
+・考察
+予想と反して、２回とも０が出力された。
+console.log実行時に、変数lifeには最後に代入された0が入力されると予想する。
+
+・開発者ツールを開いた状態のタブとHTMLを開いた状態のタブの比較
+
+〇開発者ツールを開いた状態で、HTMLタブを開いた場合
+
+
+〇HTMLタブを開いた状態で、開発者ツールを開いた場合
+incex.html:6
+Object i
+ answer: 0
+
+index.html:8
+Objcet i
+ answer: 0
+
+ ・プログラムの修正
+ 問題のソースコードでは、life変数の参照先へanswer=0を代入しているため、代入前のconsole.log(file)の出力も０になったと考えられる。
+life.answer=0では、参照先が書き換わると考え、参照先の値を書き換えるように、life={ answer: 0 }へソースコードを修正。
+※参考書　４８P
