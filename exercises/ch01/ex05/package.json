@@ -1,0 +1,16 @@
+{
+  "name": "ex05",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.test.js",
+  "scripts": {
+    "test": "node --experimental-vm-modules /github/sample/exercises-public/presets/js/node_modules/jest/bin/jest.js --runInBand",
+    "test:browser": "playwright test",
+    "server": "serve",
+    "lint": "eslint . --max-warnings=0",
+    "format": "prettier --write ."
+  }
+}
