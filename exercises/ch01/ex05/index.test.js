@@ -55,7 +55,7 @@ describe("math", () => {
   describe("factorial", () => {//factorial関数のテストを実行するメソッド
     it("send positive value", () => {//正の値が入力された場合、正の階乗を返す
       expect(factorial(5)).toBe(120);//負の値が入力された場合、負の合計値を返す
-      console.log(factorial(5));
+      console.log(factorial(4));
     });
     it("send negated value", () => {
       console.log(factorial(-5));
