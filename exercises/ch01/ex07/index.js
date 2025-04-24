@@ -6,23 +6,16 @@
 //      }
 //     }
 
-export function fib(x) {
-	const result = [ 0 , 1];//配列resultを宣言。初期値1,2.
-	let i = 2;
-	for (i = 2; i <= x; i++){//n番目のフィボナッチ数を求めるまでループ処理.
-		const a = result[ i - 1];//要素i-1の値を定数aへ格納
-		const b = result[ i - 2];//要素i-2の値を定数bへ格納
+//let a=0,b=0;//座標位置を格納するための変数を宣言。aはx座標をbはy座標を格納する。
 
-		result.push( a + b);//定数resultへa+bの相対をプッシュ
-	}
-	return result[x];//結果を返す。
+export class Point {//クラス宣言
+ constructor(x, y,a,b) {//コンストラクター宣言
+         this.x = x;
+         this.y = y;
+	 this.a = 0;
+	 this.b = 0;
+ }
+        add() {//
+                return (this.a += this.x, this.b += this.y);//変数a,bへインスタンスから入力された座標を格納。
+        }
 }
-
-/*
-例：x=5
-i=2:a=1:b=0:result=[0,1,1]
-i=3:a=1:b=1:result=[0,1,1,2]
-i=4:a=2:b=1:result=[0,1,1,2,3]
-i=5:a=3:b=2:result=[0,1,1,2,3,5]
-*/
-

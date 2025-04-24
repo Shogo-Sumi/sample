@@ -1,0 +1,27 @@
+//Point Class
+//テストコード分離前
+
+//let a=0,b=0;
+
+class Point {
+ constructor(x, y,a,b) {
+	 this.x = x;
+	 this.y = y;
+	 this.a = 0;
+	 this.b = 0;
+ }
+	add() {
+		//let a,b;
+		return (this.a += this.x, this.b += this.y);
+	}
+}
+
+let p = new Point(2,2);
+p.add();
+p.add();
+p.add();
+let q= new Point(3,3);
+q.add();
+console.log(p)
+console.log(p.a,p.b);
+console.log(q.a,q.b);

@@ -1,21 +1,41 @@
-import { fib } from "./index.js";
+import { Point } from "./index.js";
 
-//./index.jsからfibモジュールをインポート
+//./index.jsからaddモジュールをインポート
 
 // TypeScript の場合は以下:
 
-//test fib
+//test sum
 describe("math", () => {
-	//関連するテストをmathとしてまとめたメソッド
-  describe("fib", () => {//fib関数のテストを実行するメソッド
-    it("returns 5 value when value 5", () => {//testコードの説明。5が入力された場合、5を返す
-      expect(fib(5)).toBe(5);//テスト結果の確認。
-      console.log(fib(5));
+        //関連するテストをmathとしてまとめたメソッド
+  describe("Point", () => {//Pointクラスのテストを記述
+    it("Test making instance", () => {//インスタンス作成のテスト実施
+	    let p = new Point(2,2);
     });
-
-    it("returns 2111485077978050 value when value 75", () => {//testコードの説明。75が入力された場合、2111485077978050を返す
-      expect(fib(75)).toBe(2111485077978050);//テスト結果の確認。
-      console.log(fib(75));
+  });
+  describe("Point", () => {//Pointクラスのテストを記述
+    it("Test add method once", () => {//addメソッドのテスト実施
+            let p = new Point(2,2);
+	    p.add();
+	    expect(p.a).toBe(2);
+	    expect(p.b).toBe(2);
+    });
+  });
+  describe("Point", () => {//Pointクラスのテストを記述
+    it("Test add method twice", () => {//addメソッドのテスト実施
+            let p = new Point(5,5);
+            p.add();
+	    p.add();
+            expect(p.a).toBe(10);
+            expect(p.b).toBe(10);
+    });
+  });
+  describe("Point", () => {//Pointクラスのテストを記述
+    it("Test add method negative value", () => {//addメソッドのテスト実施
+            let p = new Point(-5,-5);
+            p.add();
+            p.add();
+            expect(p.a).toBe(-10);
+            expect(p.b).toBe(-10);
     });
   });
 });
