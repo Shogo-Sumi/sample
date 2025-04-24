@@ -1,0 +1,8 @@
+・コマンド実行時にエラー発生
+
+stdin is not a tty
+
+下記のコマンドを実行
+exec winpty bash
+
+gitbushのMinTTYから変更
