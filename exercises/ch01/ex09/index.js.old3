@@ -1,0 +1,79 @@
+class DefaultMap extends Map {
+	    constructor(defaultValue) {
+		            super(); // 親クラスのコンストラクタを呼び出し
+		            this.defaultValue = defaultValue; // デフォルト値を設定
+		        }
+
+	    get(key) {
+		            if (this.has(key)) {
+				                return super.get(key); // キーが存在する場合、親クラスのgetを呼び出し
+				            } else {
+						                return this.defaultValue; // キーが存在しない場合、デフォルト値を返す
+						            }
+		        }
+}
+
+//Histogramクラス: 単語の頻度ヒストグラムを計算し、表示
+class Histogram {
+     constructor() {
+             this.wordCounts = new DefaultMap(0); // 単語ごとの出現回数を記録
+                     this.totalWords = 0; // 総単語数を記録
+                         }
+
+                             add(text) {
+                                     // テキストから単語を抽出（小文字化し、\w+で単語をマッチ）
+                                             const matches = text.toLowerCase().matchAll(/\w+/g);
+                                                     const words = [...matches].map((r) => r[0]); // マッチした単語を配列に変換
+
+                                                             for (let word of words) {
+                                                                         let count = this.wordCounts.get(word); // 現在の単語の出現回数を取得
+                                                                                     this.wordCounts.set(word, count + 1); // 出現回数をインクリメント
+                                                                                                 this.totalWords++; // 総単語数をインクリメント
+                                                                                                         }
+                                                                                                             }
+
+                                                                                                                 toString() {
+                                                                                                                         // マップを[単語, 頻度]の配列に変換
+                                                                                                                                 let entries = [...this.wordCounts];
+
+                                                                                                                                         // 頻度順にソート、頻度が同じ場合はアルファベット順
+                                                                                                                                                 entries.sort((a, b) => {
+                                                                                                                                                             if (a[1] === b[1]) {
+                                                                                                                                                                             return a[0] < b[0] ? -1 : 1; // アルファベット順
+                                                                                                                                                                                         } else {
+                                                                                                                                                                                                         return b[1] - a[1]; // 頻度降順
+                                                                                                                                                                                                                     }
+                                                                                                                                                                                                                             });
+
+                                                                                                                                                                                                                                     // 頻度をパーセンテージに変換
+                                                                                                                                                                                                                                             for (let entry of entries) {
+                                                                                                                                                                                                                                                         entry[1] = (entry[1] / this.totalWords) * 100; // パーセンテージ計算
+                                                                                                                                                                                                                                                                 }
+
+                                                                                                                                                                                                                                                                         // 0.5%未満の単語を除外
+                                                                                                                                                                                                                                                                                 entries = entries.filter((entry) => entry[1] >= 0.5);
+
+															                                                                                                                                                                                                                                                                                          // 各単語をヒストグラム行に変換（単語を10文字幅で揃える）
+                                                                                                                                                                                                                                                                                                 const lines = entries.map(
+                                                                                                                                                                                                                                                                                                             ([word, n]) =>
+                                                                                                                                                                                                                                                                                                                             `${word.padStart(10)}: ${"#".repeat(Math.round(10 * n))} ${n.toFixed(2)}%`
+                                                                                                                                                                                                                                                                                                                                     );
+
+                                                                                                                                                                                                                                                                                                                                             return lines.join("\n"); // 各行を改行で結合
+                                                                                                                                                                                                                                                                                                                                                 }
+                                                                                                                                                                                                                                                                                                                                                 }
+
+                                                                                                                                                                                                                                                                                                                                                 // 標準入力からヒストグラムを生成する非同期関数
+                                                                                                                                                                                                                                                                                                                                                 async function histogramFromStdin() {
+                                                                                                                                                                                                                                                                                                                                                     process.stdin.setEncoding("utf-8"); // 入力エンコーディングをUTF-8に設定
+                                                                                                                                                                                                                                                                                                                                                         let histogram = new Histogram(); // ヒストグラムオブジェクトを生成
+                                                                                                                                                                                                                                                                                                                                                             for await (let chunk of process.stdin) {
+                                                                                                                                                                                                                                                                                                                                                                     histogram.add(chunk); // 入力テキストをヒストグラムに追加
+                                                                                                                                                                                                                                                                                                                                                                         }
+                                                                                                                                                                                                                                                                                                                                                                             return histogram;
+                                                                                                                                                                                                                                                                                                                                                                             }
+
+                                                                                                                                                                                                                                                                                                                                                                             // ヒストグラムを生成し、結果を表示
+                                                                                                                                                                                                                                                                                                                                                                             histogramFromStdin().then((histogram) => {
+                                                                                                                                                                                                                                                                                                                                                                                 console.log(histogram.toString());
+                                                                                                                                                                                                                                                                                                                                                                                 });

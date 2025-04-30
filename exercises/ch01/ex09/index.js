@@ -24,9 +24,11 @@ class Histogram {//文字頻度ヒストグラムを計算し、表示
 	}
 
 	add(text) {//テキストの追加を行うメソッド
-		text = text.replace(/\s/g, "").toUpperCase();//テキスト変数に[\s]任意のホワイトスペースまたは開業、[/g]にて、すべてのホワイトスペースまたは改行を指定する。replaceは文字列の置き換えメソッド。toUpperCaseは呼び出す文字列の値を大文字に変換。
+		const matches = text.toLowerCase().matchAll(/\w+|\$[\d.]+|\S+/g);//単語区切り
+		const words = [...matches].map((r) => r[0]);//マッチした単語を配列へ格納		
+		//text = text.replace(/\s/g, "").toUpperCase();//テキスト変数に[\s]任意のホワイトスペースまたは開業、[/g]にて、すべてのホワイトスペースまたは改行を指定する。replaceは文字列の置き換えメソッド。toUpperCaseは呼び出す文字列の値を大文字に変換。
 
-		for(let character of text) {//繰り返し処理。textの文字列の数まで処理を繰り返す。
+		for(let character of words) {//繰り返し処理。textの文字列の数まで処理を繰り返す。
 			let count = this.letterCounts.get(character);//文字数を表す？count変数へcharacter変数に格納された値を入れる。
 			//console.log(count);
 			this.letterCounts.set(character, count+1);//文字と文字数の値を格納
@@ -50,10 +52,17 @@ class Histogram {//文字頻度ヒストグラムを計算し、表示
 			entry[1] = entry[1] / this.totalLetters*100;//entry[1]を100分立表記
 		}
 
-		entries = entries.filter(entry => entry[1] >= 1);//1%未満は非表示
+		//entries = entries.filter(entry => entry[1] >= 1);//1%未満は非表示
+		entries = entries.filter((entry) => entry[1] >= 0.5);
 
-		let lines = entries.map(//各項目を1行のテキストに変換
+		/*let lines = entries.map(//各項目を1行のテキストに変換
 			([l,n]) => `${l}: ${"#".repeat(Math.round(n))} ${n.toFixed(2)}%`
+		);
+		*/
+
+		const lines = entries.map(
+			  ([l, n]) =>
+			    `${l.padStart(10)}: ${"#".repeat(Math.round(10 * n))} ${n.toFixed(2)}%`
 		);
 
 		return lines.join("\n");//各行を改行文字で区切って結合し、結合した文字列を返す。
