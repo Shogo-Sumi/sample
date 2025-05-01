@@ -1,0 +1,15 @@
+書籍11章を調査
+
+$を使用するライブラリ
+jQuery
+jQuery（ジェイクエリー）は、ウェブブラウザ用のJavaScriptコードをより容易に記述できるようにするために設計されたJavaScriptライブラリ
+
+Prototype.js
+Sam Stephenson が開発したJavaScriptフレームワークであり、Ajaxフレームワークやその他のユーティリティを提供する
+
+_を使用するライブラリ
+Underscore.js
+UnderscorejsはDocumentCloud Inc.とJeremy Ashkenasが開発しているJavaScriptライブラリです。DocumentCloud Inc.によりオープンソースとして提供されています。ファイルサイズは圧縮したもので4.9Kバイト（現バージョン1.5.2）と軽量なライブラリです。
+
+Lodash
+LodashとはJavaScriptで使用されるライブラリの一種です。Underscore.jsの開発をしたJeremy Ashkenas氏が同プロジェクトに携わっていたことでも知られております。LodashはJavaScriptのユーティリティライブラリとして様々な機能を提供しています。配列の操作、抽出、オブジェクトへの変換などが簡単にできることでも人気を集めております。特徴として『ユーティリティ』『モジュールフォーマット』『関数型プログラミング』などが挙げられます。

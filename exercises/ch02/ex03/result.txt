@@ -1,0 +1,12 @@
+Windows OS
+NFC
+
+Mac OS
+NFD
+
+Windows系ファイルシステムでは、文字コード体系NFCを採用。
+MacOSでは文字コード体系NFDを採用。
+
+自分の環境のWindowsでは、文字コードがNFCであることを確認できたが、Mac環境がないため、Mac環境での文字コード体系がNFDになるかは、Web情報でしか確認できなかった。
+
+https://www.skygroup.jp/tech-blog/article/625/
