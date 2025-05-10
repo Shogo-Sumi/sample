@@ -1,99 +1,74 @@
-/**
- * This Node program reads text from standard input, computes the frequency
- * of each letter in that text, and displays a histogram of the most
- * frequently used characters. It requires Node 12 or higher to run.
- *
- * In a Unix-type environment you can invoke the program like this:
- *    node charfreq.js < corpus.txt
- */
+//ヒストグラム作成のコードを書き写す
 
-// This class extends Map so that the get() method returns the specified
-// value instead of null when the key is not in the map
-class DefaultMap extends Map {
-  constructor(defaultValue) {
-    super(); // Invoke superclass constructor
-    this.defaultValue = defaultValue; // Remember the default value
-  }
 
-  get(key) {
-    if (this.has(key)) {
-      // If the key is already in the map
-      return super.get(key); // return its value from superclass.
-    } else {
-      return this.defaultValue; // Otherwise return the default value
-    }
-  }
+class DefaultMap extends Map {//DefaultMapクラスを宣言。Mapオブジェクトを継承して、DefaultMapを宣言。Mapオブジェクトはキーと値の組み合わせを保持する。
+	constructor(defaultValue) {
+		super();//子クラスのインスタンスから親クラスのインスタンスのメンバへアクセスし、値を参照。
+		this.defaultValue = defaultValue;
+	}
+
+	get(key) {//キーがマップ中に存在しないとき、親クラスの値を返す。
+		if (this.has(key)) {
+			return super.get(key);//親クラスMapからgetメソッドを呼び出し。
+		}
+		else {
+			return this.defaultValue;//存在しないときデフォルト値を返す。
+		}
+	}
 }
 
-// This class computes and displays letter frequency histograms
-class Histogram {
-  constructor() {
-    this.letterCounts = new DefaultMap(0); // Map from letters to counts
-    this.totalLetters = 0; // How many letters in all
-  }
+class Histogram {//文字頻度ヒストグラムを計算し、表示
+	constructor() {
+		this.letterCounts = new DefaultMap(0);//インスタンスの生成。DefaultMapクラスへ0を引き渡す。文字数を記録する。
+		this.totalLetters = 0;//すべての文字列を表す変数。
+	}
 
-  // This function updates the histogram with the letters of text.
-  add(text) {
-    // Remove whitespace from the text, and convert to upper case
-    text = text.replace(/\s/g, "").toUpperCase();
+	add(text) {//テキストの追加を行うメソッド
+		text = text.replace(/\s/g, "").toUpperCase();//テキスト変数に[\s]任意のホワイトスペースまたは開業、[/g]にて、すべてのホワイトスペースまたは改行を指定する。replaceは文字列の置き換えメソッド。toUpperCaseは呼び出す文字列の値を大文字に変換。
 
-    // Now loop through the characters of the text
-    for (let character of text) {
-      let count = this.letterCounts.get(character); // Get old count
-      this.letterCounts.set(character, count + 1); // Increment it
-      this.totalLetters++;
-    }
-  }
+		for(let character of text) {//繰り返し処理。textの文字列の数まで処理を繰り返す。
+			let count = this.letterCounts.get(character);//文字数を表す？count変数へcharacter変数に格納された値を入れる。
+			//console.log(count);
+			this.letterCounts.set(character, count+1);//文字と文字数の値を格納
+			this.totalLetters++;//トータル文字数をインクリメント。
+		}
+	}
 
-  // Convert the histogram to a string that displays an ASCII graphic
-  toString() {
-    // Convert the Map to an array of [key,value] arrays
-    let entries = [...this.letterCounts];
+	toString() {//ヒストグラムを文字列に変換して、ＡＳＣＩＩグラフィックとして表示
+		//マップを、[キー、文字列]配列へ変換
+		let entries = [...this.letterCounts];//letterCountsのすべての要素を変数entriesへ格納
 
-    // Sort the array by count, then alphabetically
-    entries.sort((a, b) => {
-      // A function to define sort order.
-      if (a[1] === b[1]) {
-        // If the counts are the same
-        return a[0] < b[0] ? -1 : 1; // sort alphabetically.
-      } else {
-        // If the counts differ
-        return b[1] - a[1]; // sort by largest count.
-      }
-    });
+		entries.sort((a,b) => {//文字数順にソート。文字数が同じ場合は、アルファベット順でソート
+			if (a[1] === b[1]) {//要素a[1]とb[1]が同値の場合
+				return a[0] < b[0] ? -1 : 1;//a[0]<b[0]=trueの場合-1,falseの場合1を返す
+			} else {//その他の場合
+				return b[1] - a[1];//b[1]-a[1]の値を返す。
+			}
+		});
 
-    // Convert the counts to percentages
-    for (let entry of entries) {
-      entry[1] = (entry[1] / this.totalLetters) * 100;
-    }
+		for(let entry of entries) {//文字数をパーセント表記
+			entry[1] = entry[1] / this.totalLetters*100;//entry[1]を100分立表記
+		}
 
-    // Drop any entries less than 1%
-    entries = entries.filter((entry) => entry[1] >= 1);
+		entries = entries.filter(entry => entry[1] >= 1);//1%未満は非表示
 
-    // Now convert each entry to a line of text
-    let lines = entries.map(
-      ([l, n]) => `${l}: ${"#".repeat(Math.round(n))} ${n.toFixed(2)}%`,
-    );
+		let lines = entries.map(//各項目を1行のテキストに変換
+			([l,n]) => `${l}: ${"#".repeat(Math.round(n))} ${n.toFixed(2)}%`
+		);
 
-    // And return the concatenated lines, separated by newline characters.
-    return lines.join("\n");
-  }
+		return lines.join("\n");//各行を改行文字で区切って結合し、結合した文字列を返す。
+	}
 }
 
-// This async (Promise-returning) function creates a Histogram object,
-// asynchronously reads chunks of text from standard input, and adds those chunks to
-// the histogram. When it reaches the end of the stream, it returns this histogram
-async function histogramFromStdin() {
-  process.stdin.setEncoding("utf-8"); // Read Unicode strings, not bytes
-  let histogram = new Histogram();
-  for await (let chunk of process.stdin) {
-    histogram.add(chunk);
-  }
-  return histogram;
+async function histogramFromStdin() {//ヒストグラムオブジェクトを生成。標準入力からテキストを非同期に読み出し、読みだしたテキストをヒストグラムに追加。最後まで読みだしたらヒストグラムを返す。asyncは非同期関数
+	process.stdin.setEncoding("utf-8");//エンコードをutf-8で実施
+	let histogram = new Histogram();//ヒストグラムオブジェクトの生成
+	for await (let chunk of process.stdin) {
+		histogram.add(chunk);
+	}
+	return histogram;
 }
 
-// This one final line of code is the main body of the program.
-// It makes a Histogram object from standard input, then prints the histogram.
-histogramFromStdin().then((histogram) => {
-  console.log(histogram.toString());
+//標準入力からヒストグラムオブジェクトを生成し、ヒストグラムを表示
+histogramFromStdin().then(histogram => { console.log(histogram.toString());
 });
