@@ -1,0 +1,16 @@
+//FizzBuzz関数を記載する
+//条件分岐による出力結果の分岐
+
+export function fizzbuzz() {
+	for( let i = 1; i <= 100; i ++ ) {
+	  if( i % 15 === 0 ) {
+		  return "FizzBuzz";
+	  } else if ( i % 5 === 0 ) {
+		  return "Buzz";
+	  } else if ( i % 3 === 0 ) {
+		  return "Fizz";
+	  } else {
+		  return i;
+	  }
+	}
+}
