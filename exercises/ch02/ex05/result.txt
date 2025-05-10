@@ -1,0 +1,25 @@
+charfreq.jsをコピーしてindex.jsを作成し、npm test ch02/ex05を実施。
+
+
+実行結果
+(node:47216) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ FAIL  ./index.test.js
+  charfreq
+    × 変更前と結果が同じであること (16 ms)
+
+  ● charfreq › 変更前と結果が同じであること
+
+    Command failed: node ch02/ex05/index.js < ch02/ex05/charfreq.js
+    �w�肳�ꂽ�p�X��������܂���B
+
+
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.36 s, estimated 1 s
+Ran all test suites matching /ch02\\ex05/i.
+
+テストは実施されているが、charfreqをコピーしたindex.jsに対して、テスト失敗の結果が出力される？
+
