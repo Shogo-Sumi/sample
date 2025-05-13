@@ -1,0 +1,61 @@
+〇コンソールで実行
+$ node
+Welcome to Node.js v22.14.0.
+Type ".help" for more information.
+> let a = 0,
+... b = 0;
+undefined
+> const c
+... =
+... a
+undefined
+> ++
+... b
+1
+> console.log(a,b,c);
+0 1 0
+undefined
+> const e = a++
+undefined
+> b;
+1
+> console.log(a,b,e);
+1 1 0
+undefined
+>
+
+
+〇ソースコードをtest.jsへ記載し実行した結果
+$ node test.js
+0 1 0
+1 1 0
+
+解釈
+
+
+let a = 0,
+... b = 0;
+
+変数a,bへ0を代入
+
+
+> const c
+... =
+... a
+undefined
+> ++
+... b
+
+console.log()の出力結果から、上記の解釈は、const c = a;++b;と解釈されている。
+
+
+
+> const e = a++
+undefined
+> b;
+1
+> console.log(a,b,e);
+1 1 0
+undefined
+
+console.log()の出力結果から、上記の解釈は、const e = a;a++;b;と解釈されている。
