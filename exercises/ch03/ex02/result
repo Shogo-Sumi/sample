@@ -1,0 +1,15 @@
+結果
+
+$ node test.js
+MAX: 1.7976931348623157e+308
+MIN: 5e-324
+MAX+1: 1.7976931348623157e+308
+MAX+1 === MAX+2: true
+
+理由
+
+Number.MAX_VALUE+1 === Number.MAX_VALUE+2がtrueとなった理由を考える。
+Number.MAX_VALUEはJavascriptが扱うことができる最大の値を持つ。
+Number.MAX_VALUE+1,Number.MAX_VALUE+2は、どちらもJavascriptが扱うことができる最大値を超える計算となる。
+このことから、Javascriptの扱う最大値を超えた場合、Infinityと同様の値となると考えられる。
+Infinity ＝＝＝Infinityと同様と考えられるため、結果はtrueとなる。

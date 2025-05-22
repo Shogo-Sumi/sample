@@ -1,0 +1,15 @@
+$ node ex01.js
+a=Infinity b=-Infinity c=NaN
+a and a
+Infinity NaN Infinity NaN
+a and b
+NaN Infinity -Infinity NaN
+a and c
+NaN NaN NaN NaN
+b and b
+-Infinity NaN Infinity NaN
+b and c
+NaN NaN NaN NaN
+c and c
+NaN NaN NaN NaN
+
