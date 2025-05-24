@@ -1,0 +1,27 @@
+$ npm test ch03/ex06
+
+> ex06@1.0.0 test
+> node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand ch03/ex06
+
+(node:21128) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ PASS  ./index.test.js
+  √ slice("Hello World!", undefined, undefined) => "Hello World!" (2 ms)
+  √ slice("Hello World!", 2, undefined) => "llo World!" (1 ms)
+  √ slice("Hello World!", -3, undefined) => "ld!" (3 ms)
+  √ slice("Hello World!", 100, undefined) => ""
+  √ slice("Hello World!", -100, undefined) => "Hello World!" (1 ms)
+  √ slice("Hello World!", 0, 12) => "Hello World!"
+  √ slice("Hello World!", 12, 0) => ""
+  √ slice("Hello World!", 2, 7) => "llo W" (1 ms)
+  √ slice("Hello World!", 7, 2) => ""
+  √ slice("Hello World!", 3, 3) => ""
+  √ slice("Hello World!", 2, 100) => "llo World!"
+  √ slice("Hello World!", 100, 2) => ""
+  √ slice("Hello World!", 2, -3) => "llo Wor"
+  √ slice("Hello World!", -3, 2) => "" (1 ms)
+  √ slice("Hello World!", 2, NaN) => ""
+  √ slice("Hello World!", NaN, 2) => "He"
+  √ slice("Hello World!", 2.3, 6.7) => "llo "
+  √ slice("Hello World!", 2, Infinity) => "llo World!"
+
