@@ -1,0 +1,22 @@
+等価性を満たしていないという表現について、下記の解釈とする。
+
+定数x,yに代入される値の記載が異なっている。
+定数x=[0],y=[-0]を代入した場合、下記の通りテストを満たす。
+
+$ npm test ch03/ex07
+
+> ex07@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch03/ex07
+
+(node:13472) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ PASS  ./index.test.js
+  √ ch03-ex07 (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.329 s, estimated 1 s
+Ran all test suites matching /ch03\\ex07/i.
+
+実行結果から、記載が異なっていても、同一の配列とみなされている。

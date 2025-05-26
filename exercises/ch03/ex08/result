@@ -1,0 +1,24 @@
+$ node
+Welcome to Node.js v22.14.0.
+Type ".help" for more information.
+> Number(true)
+1
+> Number(1234)
+1234
+> Number("txet")
+NaN
+> Boolean(1234)
+true
+> Boolean(0)
+false
+> String(true)
+'true'
+> String(1234)
+'1234'
+> parseInt("12,742 km:地球の直径")
+12
+> parseFloat("1.618:黄金比")
+1.618
+
+疑問
+3.9 型の変換について、Javascriptが実施する型変換については、実際のコーディングの場面でも、表3-2に記載されている型変換のパターンを覚えておく必要があるのでしょうか。
