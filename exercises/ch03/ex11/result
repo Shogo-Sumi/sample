@@ -1,0 +1,19 @@
+$ npm test ch03/ex11
+
+> ex11@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch03/ex11
+
+(node:28048) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ PASS  ./index.test.js
+  math
+    equals
+      √ returns same value when positive value given (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.477 s, estimated 1 s
+Ran all test suites matching /ch03\\ex11/i.
+
+
