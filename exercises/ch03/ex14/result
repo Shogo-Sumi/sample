@@ -1,0 +1,40 @@
+〇実行前の予想。
+
+let i=100;の宣言がfor文の関数内で実施されているため、i=100の結果が、for文の中で1回表示される。その後i=100の結果を受けてfor文から抜けて、i=100の結果が文末尾のconsole.log(i)にて表示される。
+結果、下記の出力となると予想。
+100
+100
+
+〇実行結果
+
+$ node index.js
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+C:\Program Files\Git\github\sample2\sample\exercises\ch03\ex14\index.js:8
+console.log(i);
+            ^
+
+ReferenceError: i is not defined
+    at Object.<anonymous> (C:\Program Files\Git\github\sample2\sample\exercises\ch03\ex14\index.js:8:13)
+    at Module._compile (node:internal/modules/cjs/loader:1562:14)
+    at Object..js (node:internal/modules/cjs/loader:1699:10)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:217:24)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)
+    at node:internal/main/run_main_module:36:49
+
+Node.js v22.13.1
+
+〇実行結果考察
+出力結果は1-9までの文字列が順番に表示される結果となった。これは即時関数が関連していると考えられる(8.5参照)
+
