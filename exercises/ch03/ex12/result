@@ -1,0 +1,10 @@
+〇valueOfについて
+https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/valueOf
+
+〇toStringについて
+https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/toString
+
+実行結果
+$ node index.js
+1
+0
