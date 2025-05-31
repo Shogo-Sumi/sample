@@ -1,0 +1,72 @@
+export function eq(a, b) {
+  // TODO: ここを実装しなさい
+　//完全に等価の場合
+    if (a === b) return true;
+  
+  // nullまたはundefinedの場合
+  if (a === null && b === undefined || a === undefined && b === null) {
+    return true;
+  }
+  // NaNの場合
+  if (Number.isNaN(a) || Number.isNaN(b)) {
+    return false;
+  }
+  
+  // プリミティブに変換、メソッドを持たないデータ値。https://developer.mozilla.org/ja/docs/Glossary/Primitive
+  const aPrim = toPrimitive(a, 'default');
+  const bPrim = toPrimitive(b, 'default');
+  
+  // 型が同じ場合は===で比較
+  if (typeof aPrim === typeof bPrim) {
+    return aPrim === bPrim;
+  }
+  
+  // 数値と文字列の比較。比較して異なる場合、数値に統一する。
+  if (typeof aPrim === 'number' && typeof bPrim === 'string') {
+    return aPrim === Number(bPrim);
+  }
+  if (typeof aPrim === 'string' && typeof bPrim === 'number') {
+    return Number(aPrim) === bPrim;
+  }
+  
+  // ブール値の場合の比較。論理値が入力されている場合、数値へ変換。
+  if (typeof aPrim === 'boolean') {
+    return Number(aPrim) === bPrim;
+  }
+  if (typeof bPrim === 'boolean') {
+    return aPrim === Number(bPrim);
+  }
+  
+  // その他の場合、等しくないと判断する。
+  return false;
+}
+
+
+export function lte(a, b) {
+  // TODO: ここを実装しなさい
+  // プリミティブに変換,メソッドを持たないデータ値
+  const aPrim = toPrimitive(a, 'number');
+  const bPrim = toPrimitive(b, 'number');
+  
+  // 文字列同士の場合
+  if (typeof aPrim === 'string' && typeof bPrim === 'string') {
+    return aPrim <= bPrim;
+  }
+  
+  // 数値に変換
+  const aNum = Number(aPrim);
+  const bNum = Number(bPrim);
+  
+  // NaNが含まれる場合はfalse
+  if (Number.isNaN(aNum) || Number.isNaN(bNum)) {
+    return false;
+  }
+  
+  // 数値比較
+  if(typeof aPrim === 'number' && typeof bPrim === 'number'){
+  return aNum <= bNum;
+  }
+
+  //その他の場合
+  return false;
+}

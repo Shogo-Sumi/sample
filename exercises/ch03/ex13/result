@@ -1,0 +1,496 @@
+〇考察
+14このテストが通らずに、すべてのテストを通る関数は作成できなかった。特にオブジェクトの比較を行う際に、オブジェクトのプロパティが等しい場合にindex.test.jsのなかで、a == bの形で比較を行っているため、これに合わせて比較結果を変換する部分の書き方がわからなかった。
+
+
+〇実行結果
+$ npm test ch03/ex13
+
+> ex13@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch03/ex13
+
+(node:14736) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ FAIL  ./index.test.js
+  √ eq({"_str": "hoge", "_value": 1}, {"_str": "hoge", "_value": 1}) => true (2 ms)
+  × eq({"_str": "hoge", "_value": 1}, {"_str": "hoge", "_value": 1}) => false (2 ms)
+  √ eq("foo", "bar") => false (1 ms)
+  √ eq("bar", "foo") => false
+  √ eq("foo", "foo") => true
+  √ eq(123, 123) => true
+  √ eq(123, 456) => false
+  √ eq(0, -0) => true (1 ms)
+  √ eq(123, NaN) => false
+  √ eq(NaN, NaN) => false
+  √ eq(Infinity, Infinity) => true (1 ms)
+  √ eq(Infinity, -Infinity) => false
+  √ eq(true, true) => true (1 ms)
+  √ eq(true, false) => false
+  √ eq(false, true) => false
+  √ eq(false, false) => true
+  √ eq(123, "123") => true
+  √ eq("123", 123) => true
+  √ eq(123, "456") => false
+  √ eq("123", 456) => false (1 ms)
+  √ eq(true, 1) => true
+  × eq(true, "1") => true (1 ms)
+  √ eq(true, 0) => false
+  √ eq(true, "") => false
+  √ eq(false, 1) => false
+  √ eq(false, "1") => false (1 ms)
+  √ eq(false, 0) => true
+  × eq(false, "") => true (1 ms)
+  √ eq(1, true) => true
+  × eq("1", true) => true (1 ms)
+  √ eq(0, true) => false
+  √ eq("", true) => false
+  √ eq(1, false) => false
+  √ eq("1", false) => false
+  √ eq(0, false) => true
+  × eq("", false) => true (1 ms)
+  √ eq(0, null) => false
+  √ eq(0, undefined) => false
+  √ eq(null, undefined) => true
+  √ eq(null, 0) => false (2 ms)
+  √ eq(undefined, 0) => false
+  √ eq(undefined, null) => true
+  √ eq(null, null) => true
+  √ eq(undefined, undefined) => true
+  √ eq({"_str": "foo", "_value": 1}, 1) => true
+  √ eq({"_str": "foo", "_value": 2}, 1) => false
+  √ eq({"_str": "1", "_value": [Object]}, 1) => true (1 ms)
+  √ eq({"_str": "2", "_value": [Object]}, 1) => false
+  √ eq({"_str": "foo", "_value": null}, 1) => false
+  √ eq({"_str": "foo", "_value": undefined}, 1) => false
+  √ eq(1, {"_str": "foo", "_value": 1}) => true
+  √ eq(1, {"_str": "foo", "_value": 2}) => false (1 ms)
+  √ eq(1, {"_str": "1", "_value": [Object]}) => true
+  √ eq(1, {"_str": "2", "_value": [Object]}) => false
+  √ eq(1, {"_str": "foo", "_value": null}) => false
+  √ eq(1, {"_str": "foo", "_value": undefined}) => false
+  × eq([Function fn], 1) => true
+  √ eq([Function fn], 1) => false
+  × eq([Function fn], 1) => true
+  √ eq([Function fn], 1) => false
+  √ eq([Function fn], 1) => false
+  √ eq([Function fn], 1) => false
+  × eq(1, [Function fn]) => true
+  √ eq(1, [Function fn]) => false
+  × eq(1, [Function fn]) => true (1 ms)
+  √ eq(1, [Function fn]) => false
+  √ eq(1, [Function fn]) => false
+  √ eq(1, [Function fn]) => false
+  × eq(2024-01-12T00:00:00.000Z, "Fri Jan 12 2024 09:00:00 GMT+0900 (日本標準時)") => true
+  × eq(2024-01-12T00:00:00.000Z, 1705017600000) => false
+  × eq("Fri Jan 12 2024 09:00:00 GMT+0900 (日本標準時)", 2024-01-12T00:00:00.000Z) => true (1 ms)
+  × eq(1705017600000, 2024-01-12T00:00:00.000Z) => false
+  √ lte(1, 2) => true
+  √ lte(2, 1) => false
+  √ lte(1, 1) => true
+  √ lte("foo", "bar") => false
+  √ lte("bar", "foo") => true
+  √ lte("foo", "foo") => true
+  √ lte(true, true) => true (1 ms)
+  √ lte(true, false) => false
+  √ lte(false, true) => true
+  √ lte(false, false) => true (1 ms)
+  √ lte(true, 0) => false
+  √ lte(true, 1) => true
+  √ lte(null, 0) => true
+  √ lte(null, 1) => true
+  √ lte(undefined, 3) => false
+  √ lte(3, undefined) => false
+  √ lte(3, NaN) => false (1 ms)
+  √ lte(NaN, 3) => false
+  √ lte({"_str": "10", "_value": 1}, 2) => true
+  √ lte({"_str": "10", "_value": 1}, 1) => true
+  √ lte({"_str": "10", "_value": [Object]}, 2) => false
+  √ lte({"_str": "10", "_value": [Object]}, 10) => true
+  √ lte({"_str": "10", "_value": null}, 10) => true
+  √ lte({"_str": "10", "_value": undefined}, 10) => false
+  √ lte(2, {"_str": "10", "_value": 1}) => false
+  √ lte(1, {"_str": "10", "_value": 1}) => true (1 ms)
+  √ lte(2, {"_str": "10", "_value": [Object]}) => true
+  √ lte(10, {"_str": "10", "_value": [Object]}) => true
+  × lte(10, {"_str": "10", "_value": null}) => false (1 ms)
+  √ lte(10, {"_str": "10", "_value": undefined}) => false
+  √ lte([Function fn], 2) => true (1 ms)
+  √ lte([Function fn], 1) => true
+  √ lte([Function fn], 2) => false
+  √ lte([Function fn], 10) => true
+  √ lte([Function fn], 10) => true
+  √ lte([Function fn], 10) => false
+  √ lte(2, [Function fn]) => false (1 ms)
+  √ lte(1, [Function fn]) => true
+  √ lte(2, [Function fn]) => true
+  √ lte(10, [Function fn]) => true
+  √ lte(10, [Function fn]) => false
+  √ lte(10, [Function fn]) => false
+  √ lte(2024-01-12T00:00:00.000Z, 2024-02-16T00:00:00.000Z) => true
+  √ lte(2024-01-12T00:00:00.000Z, 1708041600000) => true
+  √ lte(1705017600000, 2024-02-16T00:00:00.000Z) => true (1 ms)
+  √ lte(2024-02-16T00:00:00.000Z, 2024-01-12T00:00:00.000Z) => false
+  √ lte(1708041600000, 2024-01-12T00:00:00.000Z) => false
+  √ lte(2024-02-16T00:00:00.000Z, 1705017600000) => false (1 ms)
+
+  ● eq({"_str": "hoge", "_value": 1}, {"_str": "hoge", "_value": 1}) => false
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      123 |   eqTestCase(date1.getTime(), date1),
+      124 | ])("eq(%p, %p) => %p", (a, b, expected) => {
+    > 125 |   expect(eq(a, b)).toBe(expected);
+          |                    ^
+      126 | });
+      127 |
+      128 | // tests for lte
+
+      at toBe (index.test.js:125:20)
+
+  ● eq(true, "1") => true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      123 |   eqTestCase(date1.getTime(), date1),
+      124 | ])("eq(%p, %p) => %p", (a, b, expected) => {
+    > 125 |   expect(eq(a, b)).toBe(expected);
+          |                    ^
+      126 | });
+      127 |
+      128 | // tests for lte
+
+      at toBe (index.test.js:125:20)
+
+  ● eq(false, "") => true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      123 |   eqTestCase(date1.getTime(), date1),
+      124 | ])("eq(%p, %p) => %p", (a, b, expected) => {
+    > 125 |   expect(eq(a, b)).toBe(expected);
+          |                    ^
+      126 | });
+      127 |
+      128 | // tests for lte
+
+      at toBe (index.test.js:125:20)
+
+  ● eq("1", true) => true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      123 |   eqTestCase(date1.getTime(), date1),
+      124 | ])("eq(%p, %p) => %p", (a, b, expected) => {
+    > 125 |   expect(eq(a, b)).toBe(expected);
+          |                    ^
+      126 | });
+      127 |
+      128 | // tests for lte
+
+      at toBe (index.test.js:125:20)
+
+  ● eq("", false) => true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      123 |   eqTestCase(date1.getTime(), date1),
+      124 | ])("eq(%p, %p) => %p", (a, b, expected) => {
+    > 125 |   expect(eq(a, b)).toBe(expected);
+          |                    ^
+      126 | });
+      127 |
+      128 | // tests for lte
+
+      at toBe (index.test.js:125:20)
+
+  ● eq([Function fn], 1) => true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      123 |   eqTestCase(date1.getTime(), date1),
+      124 | ])("eq(%p, %p) => %p", (a, b, expected) => {
+    > 125 |   expect(eq(a, b)).toBe(expected);
+          |                    ^
+      126 | });
+      127 |
+      128 | // tests for lte
+
+      at toBe (index.test.js:125:20)
+
+  ● eq([Function fn], 1) => true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      123 |   eqTestCase(date1.getTime(), date1),
+      124 | ])("eq(%p, %p) => %p", (a, b, expected) => {
+    > 125 |   expect(eq(a, b)).toBe(expected);
+          |                    ^
+      126 | });
+      127 |
+      128 | // tests for lte
+
+      at toBe (index.test.js:125:20)
+
+  ● eq(1, [Function fn]) => true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      123 |   eqTestCase(date1.getTime(), date1),
+      124 | ])("eq(%p, %p) => %p", (a, b, expected) => {
+    > 125 |   expect(eq(a, b)).toBe(expected);
+          |                    ^
+      126 | });
+      127 |
+      128 | // tests for lte
+
+      at toBe (index.test.js:125:20)
+
+  ● eq(1, [Function fn]) => true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      123 |   eqTestCase(date1.getTime(), date1),
+      124 | ])("eq(%p, %p) => %p", (a, b, expected) => {
+    > 125 |   expect(eq(a, b)).toBe(expected);
+          |                    ^
+      126 | });
+      127 |
+      128 | // tests for lte
+
+      at toBe (index.test.js:125:20)
+
+  ● eq(2024-01-12T00:00:00.000Z, "Fri Jan 12 2024 09:00:00 GMT+0900 (日本標準時)") => true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      123 |   eqTestCase(date1.getTime(), date1),
+      124 | ])("eq(%p, %p) => %p", (a, b, expected) => {
+    > 125 |   expect(eq(a, b)).toBe(expected);
+          |                    ^
+      126 | });
+      127 |
+      128 | // tests for lte
+
+      at toBe (index.test.js:125:20)
+
+  ● eq(2024-01-12T00:00:00.000Z, 1705017600000) => false
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      123 |   eqTestCase(date1.getTime(), date1),
+      124 | ])("eq(%p, %p) => %p", (a, b, expected) => {
+    > 125 |   expect(eq(a, b)).toBe(expected);
+          |                    ^
+      126 | });
+      127 |
+      128 | // tests for lte
+
+      at toBe (index.test.js:125:20)
+
+  ● eq("Fri Jan 12 2024 09:00:00 GMT+0900 (日本標準時)", 2024-01-12T00:00:00.000Z) => true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      123 |   eqTestCase(date1.getTime(), date1),
+      124 | ])("eq(%p, %p) => %p", (a, b, expected) => {
+    > 125 |   expect(eq(a, b)).toBe(expected);
+          |                    ^
+      126 | });
+      127 |
+      128 | // tests for lte
+
+      at toBe (index.test.js:125:20)
+
+  ● eq(1705017600000, 2024-01-12T00:00:00.000Z) => false
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      123 |   eqTestCase(date1.getTime(), date1),
+      124 | ])("eq(%p, %p) => %p", (a, b, expected) => {
+    > 125 |   expect(eq(a, b)).toBe(expected);
+          |                    ^
+      126 | });
+      127 |
+      128 | // tests for lte
+
+      at toBe (index.test.js:125:20)
+
+  ● lte(10, {"_str": "10", "_value": null}) => false
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      186 |   lteTestCase(date2, date1.getTime()),
+      187 | ])("lte(%p, %p) => %p", (a, b, expected) => {
+    > 188 |   expect(lte(a, b)).toBe(expected);
+          |                     ^
+      189 | });
+      190 |
+
+      at toBe (index.test.js:188:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       14 failed, 106 passed, 120 total
+Snapshots:   0 total
+Time:        0.454 s
+Ran all test suites matching /ch03\\ex13/i.
+
+
+
+index.test.jsを用いたテストで失敗となった14のテストケースについてnodeで再実行した結果。
+
+$ node
+Welcome to Node.js v22.14.0.
+Type ".help" for more information.
+> class Test {
+...   constructor(str, value) {
+...     this._str = str;
+...     this._value = value;
+...   }
+...
+...   toString() {
+...     return this._str;
+...   }
+...   valueOf() {
+...     return this._value;
+...   }
+... }
+undefined
+> function testFunc(str, value) {
+...   const fn = () => {};
+...   fn.toString = () => str;
+...   fn.valueOf = () => value;
+...   return fn;
+... }
+undefined
+> const hoge1 = new Test("hoge", 1);
+undefined
+> const hoge2 = new Test("hoge", 1);
+undefined
+>
+> const date1 = new Date("2024-01-12T00:00:00Z");
+undefined
+> const date2 = new Date("2024-02-16T00:00:00Z");
+undefined
+> function eqTestCase(a, b) {
+...   return [a, b, a == b];
+... }
+undefined
+>
+> function lteTestCase(a, b) {
+...   return [a, b, a <= b];
+... }
+undefined
+
+> eqTestCase(hoge1, hoge2)
+[
+  Test { _str: 'hoge', _value: 1 },
+  Test { _str: 'hoge', _value: 1 },
+  false
+]
+> eqTestCase(true, "1")
+[ true, '1', true ]
+> eqTestCase(false, "")
+[ false, '', true ]
+> eqTestCase("1", true)
+[ '1', true, true ]
+> eqTestCase("", false)
+[ '', false, true ]
+> eqTestCase(testFunc("foo", 1), 1)
+[
+  [Function: fn] {
+    toString: [Function (anonymous)],
+    valueOf: [Function (anonymous)]
+  },
+  1,
+  true
+]
+> eqTestCase(testFunc("1", {}), 1)
+[
+  [Function: fn] {
+    toString: [Function (anonymous)],
+    valueOf: [Function (anonymous)]
+  },
+  1,
+  true
+]
+> eqTestCase(1, testFunc("foo", 1))
+[
+  1,
+  [Function: fn] {
+    toString: [Function (anonymous)],
+    valueOf: [Function (anonymous)]
+  },
+  true
+]
+> eqTestCase(1, testFunc("1", {}))
+[
+  1,
+  [Function: fn] {
+    toString: [Function (anonymous)],
+    valueOf: [Function (anonymous)]
+  },
+  true
+]
+> eqTestCase(date1, date1.toString())
+[
+  2024-01-12T00:00:00.000Z,
+  'Fri Jan 12 2024 09:00:00 GMT+0900 (日本標準時)',
+  true
+]
+> eqTestCase(date1, date1.getTime())
+[ 2024-01-12T00:00:00.000Z, 1705017600000, false ]
+> eqTestCase(date1.toString(), date1)
+[
+  'Fri Jan 12 2024 09:00:00 GMT+0900 (日本標準時)',
+  2024-01-12T00:00:00.000Z,
+  true
+]
+> eqTestCase(date1.getTime(), date1)
+[ 1705017600000, 2024-01-12T00:00:00.000Z, false ]
+
+> lteTestCase(10, new Test("10", null))
+[ 10, Test { _str: '10', _value: null }, false ]
+
+
+
