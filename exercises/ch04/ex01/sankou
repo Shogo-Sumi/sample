@@ -1,0 +1,5 @@
+ToBe()によるテストが失敗する場合
+
+toStrictEqual()を使用する。
+
+参考：https://dev.classmethod.jp/articles/alternative-solution-when-tests-with-tobe-matcher-fail-in-jest/

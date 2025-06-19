@@ -14,7 +14,7 @@ package.jsonに下記を記載
     "test:browser": "playwright test",
     "server": "serve",
     "lint": "eslint . --max-warnings=0",
-    "format": "prettier --write ../*.js"
+    "format": "prettier --write ./*.js"
   },
   "author": "",
   "private": true,
@@ -29,6 +29,7 @@ package.jsonに下記を記載
     "serve": "^14.2.3"
   },
   "type": "module"
+}
 
 実行コマンド
 npm run format

@@ -1,0 +1,9 @@
+$ node index.js test
+{ real: 4, imag: 6 }
+{ real: -2, imag: -2 }
+{ real: -5, imag: 10 }
+{ real: 0.44, imag: 0.08 }
+{ real: 0, imag: -2 }
+{ real: -2, imag: -2 }
+{ real: -1, imag: -2 }
+{ real: -1, imag: -2 }
