@@ -1,0 +1,42 @@
+〇問題
+typeof 演算子のオペランドに、undefined, null, オブジェクト, NaN, 数値, 関数 を指定したときの返り値を予想しなさい。 その後実装しコンソール出力で確認しなさい。
+
+〇予想
+typeofについて
+https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/typeof
+
+オペランドの型を示す文字列を返す。
+
+各予想
+undefined → undefine
+例外な処理と予想。undefinedを格納する専用のデータ型undefinedが返される？
+
+null → null
+undefinedと同様の処理になると予想。
+
+オブジェクト →　object
+オブジェクト型を格納するobject型が返されると考える。
+
+NaN →　string
+NaNは数値ではない値を表すため、数値ではなく文字列をデータ型として返却すると予想。
+
+数値 → number
+数値型を返すと考える。
+
+関数 → function
+関数は専用のデータ型functionの値を返すと考える。
+
+〇結果
+
+$ node index.js
+undefined
+object
+object
+object
+object
+object
+object
+number
+function
+
+nullはobject型を返した。その他は予想通りの結果となった。

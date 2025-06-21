@@ -1,0 +1,5 @@
+〇実行結果
+$ node index.js
+[ 'r', 'i', 'c', 'o', 'h' ]
+5
+[ 'r', 'i', 'c', <1 empty item>, 'h' ]

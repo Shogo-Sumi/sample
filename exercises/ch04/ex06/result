@@ -1,0 +1,15 @@
+$ node index.js
+{ maxWidth: 30, maxHeight: 50 }
+{ maxWidth: 30, maxHeight: 480 }
+{ maxWidth: 600, maxHeight: 50 }
+{ maxWidth: 600, maxHeight: 480 }
+{ maxWidth: 600, maxHeight: 480 }
+{ maxWidth: 30, maxHeight: 50 }
+{ maxWidth: 30, maxHeight: 480 }
+{ maxWidth: 600, maxHeight: 50 }
+{ maxWidth: 600, maxHeight: 480 }
+{ maxWidth: 600, maxHeight: '' }
+
+
+{ maxWidth: 600, maxHeight: '' }
+???.実行結果でrssize2へ""を与えた場合、maxHeightのみ''が返された。理由がよくわかりません。
