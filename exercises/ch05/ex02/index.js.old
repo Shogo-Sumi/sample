@@ -1,0 +1,87 @@
+//文字列のパラメーターを取り、制御文字などをエスケープシーケンスに変換した文字列を返す
+//if文を使用する場合は、各シーケンスに合致するかをif-elseの形で実装する。
+
+const Escape = {
+  // if-elseを使用。文字列を検索し、エスケープ対象となる文字列が見つかれば変換を行う。
+  escape_if(str) {
+    let result = '';
+    for (let char of str) {
+      if (char === '\0') {
+        result += '\\0';
+      } else if (char === '\b') {
+        result += '\\b';
+      } else if (char === '\t') {
+        result += '\\t';
+      } else if (char === '\n') {
+        result += '\\n';
+      } else if (char === '\v') {
+        result += '\\v';
+      } else if (char === '\f') {
+        result += '\\f';
+      } else if (char === '\r') {
+        result += '\\r';
+      } else if (char === '"') {
+        result += '\\"';
+      } else if (char === "'") {
+        result += "\\'";
+      } else if (char === '\\') {
+        result += '\\\\';
+      } else {
+        result += char;
+      }
+    }
+    return result;
+  },
+
+  // switchを使用。エスケープ対象となる文字列の変換を行う。
+  escape_switch(str) {
+    let result = '';
+    for (let char of str) {
+      switch (char) {
+        case '\0':
+          result += '\\0';
+          break;
+        case '\b':
+          result += '\\b';
+          break;
+        case '\t':
+          result += '\\t';
+          break;
+        case '\n':
+          result += '\\n';
+          break;
+        case '\v':
+          result += '\\v';
+          break;
+        case '\f':
+          result += '\\f';
+          break;
+        case '\r':
+          result += '\\r';
+          break;
+        case '"':
+          result += '\\"';
+          break;
+        case "'":
+          result += "\\'";
+          break;
+        case '\\':
+          result += '\\\\';
+          break;
+        default:
+          result += char;
+          break;
+      }
+    }
+    return result;
+  }
+};
+
+// テスト
+const test = `Hello\0World\t\n\r"quote"'single'\\back\\slash\f\v`;
+
+// if-else メソッドのテスト
+console.log(Escape.escape_if(test));
+
+// switch メソッドのテスト
+console.log(Escape.escape_switch(test));
