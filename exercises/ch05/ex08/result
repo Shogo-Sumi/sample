@@ -1,0 +1,29 @@
+〇ソースコード
+let x = 0;
+
+for(let i = 1; i <= 5; i++) {
+    x = i;
+    try {
+        throw Error();
+    } catch {
+        break;
+    } finally {
+        continue;
+    }
+}
+
+console.log(x);
+
+〇ソースコードの実行結果を予想する。
+5.7の問題の結果、try,finallyの処理の結果が異なる場合、finallyの処理優先された。
+このことから、上のソースコードの結果は、x = iの代入の処理の後、tryでcatchの処理に移動し、breakの処理を実行するが、最後に記載されているfinallyの処理内のcontinueが優先され、5回	x=iの処理が実行されると考える。
+
+〇結果の予想
+5
+
+〇実際の結果
+$ node index.js
+5
+
+〇結果の考察
+予想通りの結果となった。catchの処理内でbreakが記載されていたが、for文から抜けることなく、5回繰り返しは実行されたと考える。

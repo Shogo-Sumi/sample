@@ -1,0 +1,29 @@
+$ npm test ch05/ex05
+
+> ex05@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch05/ex05
+
+  console.log
+    { y: 2 }
+
+      at log (index.js:16:9)
+
+  console.log
+    { x: 1, y: 2, z: 3 }
+
+      at log (index.js:17:9)
+
+(node:5452) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ PASS  ./index.test.js
+  math
+    f
+      √ f (3 ms)
+      √ f
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        0.492 s, estimated 1 s
+Ran all test suites matching /ch05\\ex05/i.
+

@@ -1,0 +1,28 @@
+promptが定義されていない旨のエラーが発生したため、ソースコードに入力値を記載し、その値を下に階乗を計算するように記載する。
+
+n=3の場合の実行結果
+
+$ node index.js
+3! = 6
+Calculation process completed
+
+
+n=0の場合の実行結果
+
+$ node index.js
+0! = 1
+Calculation process completed
+
+n="test" (文字列）の場合
+
+$ node index.js
+Invalid input: Please enter a valid number
+Calculation process completed
+
+n=-1の場合
+
+$ node index.js
+Input must be a non-negative integer
+Calculation process completed
+
+

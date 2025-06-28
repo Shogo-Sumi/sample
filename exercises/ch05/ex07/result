@@ -1,0 +1,25 @@
+〇問題
+function f() {
+    try {
+        return true;
+    } finally {
+        return false;
+    }
+}
+
+console.log(f());
+
+〇考察
+tryの処理は必ず実行され、finallyの値はtryが実行され、終了した場合必ず実行される。
+console.logでf()関数を呼び出した場合、最初にtryの処理が実行され、rturn trueの返り値が帰ってくる。その後、finallyの処理が実行されfalseの値が返される。よって結果の予想は下記の通り。
+
+ture
+false
+
+〇実行結果
+$ node index.js
+false
+
+
+〇実行結果後の考察
+予想と異なり、falseが返された。これは、tryの処理を実施宙にreturn trueが実施された後に、finallyの処理のreturn falseの値が実施され、後の処理の結果であるfalseが上書きされ返されたと考える。
