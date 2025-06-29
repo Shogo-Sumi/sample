@@ -1,0 +1,16 @@
+index.js(問題文そのままの実行結果）
+
+$ node index.js
+{ a: 1, b: 2, obj: { a: 4, b: 4 } }
+{ a: 4, b: 2, obj: { b: 4 } }
+{ a: 1, b: 2, obj: { a: 2 } }
+{ a: 2, b: 2, obj: {} }
+
+index2.js(with console.logを使わない実行結果)
+
+$ node index2.js
+{ a: 1, b: 2, obj: { a: 4, b: 4 } }
+{ a: 4, b: 2, obj: { b: 4 } }
+{ a: 1, b: 2, obj: { a: 2 } }
+{ a: 2, b: 2, obj: {} }
+

@@ -1,0 +1,170 @@
+〇nodeでのでバックの実施について
+inspectコマンドを使用してnodeを実行すればよい。
+node inspect index.js
+
+参考：https://www.sejuku.net/blog/87186
+
+
+
+
+〇実行結果
+$ node inspect index.js
+< Debugger listening on ws://127.0.0.1:9229/5a2d67f5-59b6-4112-8a07-916aa657bbd3
+< For help, see: https://nodejs.org/en/docs/inspector
+<
+connecting to 127.0.0.1:9229 ... ok
+< Debugger attached.
+<
+Break on start in index.js:1
+> 1 const user = {
+  2   name: 'taro',
+  3   age: 30,
+debug> n
+step in index.js:7
+  5 }
+  6
+> 7 console.log(user);
+  8
+debug> n
+< { name: 'taro', age: 30, area: 'Tokyo' }
+<
+step in index.js:7
+  5 }
+  6
+> 7 console.log(user);
+  8
+debug> n
+step in node:internal/modules/cjs/loader:1557
+ 1555                           [exports, require, module, filename, dirname]);
+ 1556   }
+>1557   this[kIsExecuting] = false;
+ 1558   if (requireDepth === 0) { statCache = null; }
+ 1559   return result;
+debug> n
+step in node:internal/modules/cjs/loader:1558
+ 1556   }
+ 1557   this[kIsExecuting] = false;
+>1558   if (requireDepth === 0) { statCache = null; }
+ 1559   return result;
+ 1560 };
+debug> n
+step in node:internal/modules/cjs/loader:1558
+ 1556   }
+ 1557   this[kIsExecuting] = false;
+>1558   if (requireDepth === 0) { statCache = null; }
+ 1559   return result;
+ 1560 };
+debug> n
+step in node:internal/modules/cjs/loader:1559
+ 1557   this[kIsExecuting] = false;
+ 1558   if (requireDepth === 0) { statCache = null; }
+>1559   return result;
+ 1560 };
+ 1561
+debug> n
+step in node:internal/modules/cjs/loader:1559
+ 1557   this[kIsExecuting] = false;
+ 1558   if (requireDepth === 0) { statCache = null; }
+>1559   return result;
+ 1560 };
+ 1561
+debug> n
+step in node:internal/modules/cjs/loader:1707
+ 1705   }
+ 1706   module._compile(source, filename, loadedFormat);
+>1707 };
+ 1708
+ 1709 /**
+debug> n
+step in node:internal/modules/cjs/loader:1290
+ 1288
+ 1289   Module._extensions[extension](this, filename);
+>1290   this.loaded = true;
+ 1291
+ 1292   // Create module entry at load time to snapshot exports correctly
+debug> n
+step in node:internal/modules/cjs/loader:1293
+ 1291
+ 1292   // Create module entry at load time to snapshot exports correctly
+>1293   const exports = this.exports;
+ 1294   // Preemptively cache for ESM loader.
+ 1295   this[kModuleExport] = exports;
+debug> n
+step in node:internal/modules/cjs/loader:1295
+ 1293   const exports = this.exports;
+ 1294   // Preemptively cache for ESM loader.
+>1295   this[kModuleExport] = exports;
+ 1296 };
+ 1297
+debug> n
+step in node:internal/modules/cjs/loader:1296
+ 1294   // Preemptively cache for ESM loader.
+ 1295   this[kModuleExport] = exports;
+>1296 };
+ 1297
+ 1298 /**
+debug> n
+step in node:internal/modules/cjs/loader:1109
+ 1107   try {
+ 1108     module.load(filename);
+>1109     threw = false;
+ 1110   } finally {
+ 1111     if (threw) {
+debug> n
+step in node:internal/modules/cjs/loader:1111
+ 1109     threw = false;
+ 1110   } finally {
+>1111     if (threw) {
+ 1112       delete Module._cache[filename];
+ 1113       if (parent !== undefined) {
+debug> n
+step in node:internal/modules/cjs/loader:1123
+ 1121         }
+ 1122       }
+>1123     } else if (module.exports &&
+ 1124                !isProxy(module.exports) &&
+ 1125                ObjectGetPrototypeOf(module.exports) ===
+debug> n
+step in node:internal/modules/cjs/loader:1131
+ 1129   }
+ 1130
+>1131   return module.exports;
+ 1132 };
+ 1133
+debug> n
+step in node:internal/modules/cjs/loader:1131
+ 1129   }
+ 1130
+>1131   return module.exports;
+ 1132 };
+ 1133
+debug> n
+step in node:diagnostics_channel:322
+ 320   traceSync(fn, context = {}, thisArg, ...args) {
+ 321     if (!this.hasSubscribers) {
+>322       return ReflectApply(fn, thisArg, args);
+ 323     }
+ 324
+debug> n
+step in node:internal/modules/cjs/loader:226
+ 224     }, Module, request, parent, isMain);
+ 225   } finally {
+>226     endTimer(logLabel, traceLabel);
+ 227   }
+ 228 }
+debug> n
+< Waiting for the debugger to disconnect...
+<
+debug> n
+Uncaught Error [-32000]: Can only perform operation while paused.
+    at _pending.<computed> (node:internal/debugger/inspect_client:247:27)
+    at Client._handleChunk (node:internal/debugger/inspect_client:214:11)
+    at Socket.emit (node:events:518:28)
+    at Socket.emit (node:domain:489:12)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23) {
+  code: -32000
+}
+
