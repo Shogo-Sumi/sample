@@ -20,6 +20,7 @@ export function slice(str, indexStart, indexEnd) {
 
   // インデックスを有効な範囲に制限
 　//str.lengthよりも大きいindexStart,indexEndが引数として渡された場合の処理。
+  //Math.maxの処理が重複している。
   indexStart = Math.min(Math.max(indexStart, 0), str.length);
   indexEnd = Math.min(Math.max(indexEnd, 0), str.length);
 

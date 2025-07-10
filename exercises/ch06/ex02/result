@@ -1,0 +1,4 @@
+$ node index.js
+true
+exam: { name: 'math', point: 100 } o: {} Object.getPrototypeOf(o); { name: 'math', point: 100 }
+

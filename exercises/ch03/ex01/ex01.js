@@ -38,6 +38,8 @@ console.log('c and c');
 let cc1 = c+c,cc2 = c-c,cc3 = c*c,cc4 = c/c;
 console.log(cc1,cc2,cc3,cc4);
 
-
+//for分で計算を回した方が効率的
+//let x = [ Infinity,-Infinity,NaN];
+//for 
 
 

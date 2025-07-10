@@ -1,0 +1,39 @@
+Object.prototype.isPrototypeOf()を使用したところ、下記のエラーが発生した。
+
+r23000089@A081012340 MINGW64 /github/sample2/sample/exercises/ch06/ex03 (main)
+$ node index.js
+oがp,qのプロトタイプチェーン上にあることの確認
+file:///C:/Program%20Files/Git/github/sample2/sample/exercises/ch06/ex03/index.js:15
+console.log(o.prototype.isPrototypeOf(p));
+                        ^
+
+TypeError: Cannot read properties of undefined (reading 'isPrototypeOf')
+    at file:///C:/Program%20Files/Git/github/sample2/sample/exercises/ch06/ex03/index.js:15:25
+    at ModuleJob.run (node:internal/modules/esm/module_job:271:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:547:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+
+Node.js v22.13.1
+
+
+下記の参考文献に、prototypeはfunctionインスタンスのデータプロパティであるとの記載があるため、
+Object.prototype.isPrototypeOf()の代わりに、Object.isPrototypeOf()を使用する。
+
+参考：https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype
+
+
+〇実行結果
+$ node index.js
+oがp,qのプロトタイプチェーン上にあることの確認
+true
+true
+pがqのプロトタイプチェーン上にあることの確認
+true
+Objectがrのプロトタイプチェーン上にあることの確認
+true
+Arrayがrのプロトタイプチェーン上にあることの確認
+false
+Arrayがsのプロトタイプチェーン上にあることの確認
+false
+Mapがuのプロトタイプチェーン上にあることの確認
+false
