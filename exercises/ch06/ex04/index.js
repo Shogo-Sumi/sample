@@ -21,10 +21,15 @@ console.log("hasOwnPropertyの実行結果");
 console.log("x:",p.hasOwnProperty("x"),"y:",p.hasOwnProperty("y"),"z:",p.hasOwnProperty("z"));
 
 //propertyIsEnumerable
+console.log("propertyIsEnumerableの実行結果");
+console.log("x:",p.propertyIsEnumerable("x"),"y:",p.propertyIsEnumerable("y"),"z:",p.propertyIsEnumerable("z"));
 
 
 
 //プロパティの削除
+console.log("プロパティ削除の実行結果");
+delete p.x;delete p.y;delete p.z
+console.log("x:",p.x,"y:",p.y,"z:",p.z);
 
 
 

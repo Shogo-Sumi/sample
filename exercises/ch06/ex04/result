@@ -1,3 +1,26 @@
 strictモードではエラーが発生するため、非strictモードで実施
 
+〇x,y,zについて
+x
+明示的にwritable属性、enumerable属性、configurable属性をtrueに設定
+
+y
+明示的にwritable属性、enumerable属性、configurable属性をfalseに設定
+
+z
+valuse以外の設定を省略
+
+
+〇実行結果
+
+$ node index.js
+変更前のpの確認: 1 2 3
+プロパティ変更後の値
+10 2 3
+hasOwnPropertyの実行結果
+x: true y: true z: true
+propertyIsEnumerableの実行結果
+x: true y: false z: false
+プロパティ削除の実行結果
+x: undefined y: 2 z: 3
 

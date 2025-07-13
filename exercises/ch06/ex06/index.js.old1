@@ -1,0 +1,79 @@
+//6.6を参照
+//6.10.4　スプレッド演算子を活用
+//Object.getOwnPropertyNames()
+//https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames
+//Object.getOwnPropertySymbols()
+//https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols
+
+function returnPropertyName(obj){
+//オブジェクトが独自プロパティの場合の処理。
+	const own = [];
+	const sym = [];
+	for (let a in obj){
+		if ( Object.getOwnPropertyNames(a)){
+			own.push(a);
+		}
+		if (Object.getOwnPropertySymbols(a)){
+			sym.push(a);
+		}
+	};
+
+//オブジェクトが継承プロパティの場合
+	const inheritance = [];
+	for (let b in obj){
+		if (!obj.hasOwnProperty(b)){
+			inheritance.push(b);
+		}
+	};
+
+	return [...own,...sym,...inheritance];
+}
+
+
+
+let p = Object.defineProperties(
+  {},
+  {
+    1: { value: 1, writable: true, enumerable: true, configurable: true },
+    2: { value: 2, writable: true, enumerable: true, configurable: true },
+    x: { value: 3, writable: true, enumerable: true, configurable: true },
+    y: { value: 4, writable: true, enumerable: true, configurable: true },
+  },
+);
+
+//プロパティ変更前の値の確認
+console.log("変更前のpの確認:", p["1"], p["2"], p.x, p.y);
+
+//pをプロトタイプとして持つオブジェクトを作成する。
+//数値名および文字列名のプロパティそれぞれについて、オブジェクトはプロトタイプと同名および同名でないプロパティを持つ
+
+let q = Object.create(p);
+console.log("pを継承したqを確認：", q["1"], q["2"], q.x, q.y);
+
+//オブジェクトqにプロトタイプと同名、同名でないプロパティを追加する。
+
+q = Object.defineProperties(
+  {},
+  {
+    1: { value: 1, writable: true, enumerable: false, configurable: true }, //同名
+    2: { value: 2, writable: true, enumerable: true, configurable: true }, //同名
+    0: { value: 5, writable: true, enumerable: true, configurable: true }, //同名でない
+    Symmbol: { value: 6, writable: true, enumerable: true, configurable: true }, //同名でない
+    x: { value: 3, writable: true, enumerable: false, configurable: true }, //同名
+    y: { value: 4, writable: true, enumerable: true, configurable: true }, //同名
+    a: { value: 6, writable: true, enumerable: true, configurable: true }, //同名でない
+  },
+);
+
+console.log(
+  "数値名および文字列名のオブジェクトについて、それぞれ同名、同名でないプロパティをqに追加:",
+  q["1"],
+  q["2"],
+  q["3"],
+  q.x,
+  q.y,
+  q.z,
+);
+
+console.log("関数にオブジェクトを渡し、結果を確認");
+console.log(returnPropertyName(q));

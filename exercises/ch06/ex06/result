@@ -1,0 +1,43 @@
+strictモードではエラーが発生するため、非strictモードで実施
+
+〇プロトタイプについて
+let p = Object.defineProperties({}, {
+1: { value: 1, writable: true, enumerable: true, configurable: true },
+2: { value: 2, writable: true, enumerable: true, configurable: true },
+x: { value: 3, writable: true, enumerable: true, configurable: true },
+y: { value: 4, writable: true, enumerable: true, configurable: true }
+});
+
+〇オブジェクトについて
+q = Object.defineProperties(
+  {},
+  {
+    1: { value: 1, writable: true, enumerable: false, configurable: true }, //同名
+    2: { value: 2, writable: true, enumerable: true, configurable: true }, //同名
+    0: { value: 5, writable: true, enumerable: true, configurable: true }, //同名でない
+    Symmbol: { value: 6, writable: true, enumerable: true, configurable: true }, //同名でない
+    x: { value: 3, writable: true, enumerable: false, configurable: true }, //同名
+    y: { value: 4, writable: true, enumerable: true, configurable: true }, //同名
+    a: { value: 6, writable: true, enumerable: true, configurable: true }, //同名でない
+  },
+);
+
+
+〇実行結果
+
+$ node index.js
+変更前のpの確認: 1 2 3 4
+pを継承したqを確認： 1 2 3 4
+数値名および文字列名のオブジェクトについて、それぞれ同名、同名でないプロパティをqに追加: 1 2 undef
+ined 3 4 undefined
+for/inループでプロパティの順番を確認
+0
+2
+Symmbol
+y
+a
+Object.keysでプロパティの順番を確認
+[ '0', '2', 'Symmbol', 'y', 'a' ]
+
+〇考察
+プロパティ名が非負の整数である0は最初に列挙され、文字列a,Symbolはオブジェクトに追加された順番で表示された。enumerableがfalseに設定されたプロパティについては表示されなかった。

@@ -1,0 +1,54 @@
+strictモードではエラーが発生するため、非strictモードで実施
+
+〇プロトタイプについて
+let p = Object.defineProperties(
+  {},
+  {
+    1: { value: 10, writable: true, enumerable: true, configurable: true },
+    2: { value: 20, writable: true, enumerable: true, configurable: true },
+    3: { value: 30, writable: true, enumerable: true, configurable: true },
+    x: { value: 10, writable: true, enumerable: true, configurable: true },
+    y: { value: 20, writable: true, enumerable: true, configurable: true },
+    z: { value: 30, writable: true, enumerable: true, configurable: true }
+  },
+);
+
+
+〇オブジェクトについて
+q = Object.defineProperties(
+  q,
+  {
+    1: { value: 1, writable: true, enumerable: false, configurable: true }, //同名
+    2: { value: 2, writable: true, enumerable: true, configurable: true }, //同名
+    0: { value: 5, writable: true, enumerable: true, configurable: true }, //同名でない
+    [sym00]: { value: 7, writable: true, enumerable: true, configurable: true }, //同名でない
+    x: { value: 3, writable: true, enumerable: false, configurable: true }, //同名
+    y: { value: 4, writable: true, enumerable: true, configurable: true }, //同名
+    a: { value: 6, writable: true, enumerable: true, configurable: true }, //同名でない
+  },
+);
+
+
+〇実行結果
+
+$ node index.js
+変更前のpの確認: 10 20 10 20
+pを継承したqを確認： 10 20 30 10 20 30
+Symbol(abc)
+[ Symbol(abc) ]
+数値名および文字列名のオブジェクトについて、それぞれ同名、同名でないプロパティをqに追加: 1 2 30 5
+7 3 4 30 6
+for/inループでプロパティの順番を確認
+0
+2
+y
+a
+3
+z
+Object.keysでプロパティの順番を確認
+[ '0', '2', 'y', 'a' ]
+
+
+〇考察
+独自プロパティに定義されたプロパティ[0,2,y,a]が先に表示され、継承したプロパティ[3,z]があとに表示された。また、独自プロパティではそれぞれ、非負の整数である数字である0が最初、2が時点で表示され、文字列y,aについては、オブジェクトに追加された順番で表示された。
+継承プロパティの値も同様に、数字が先に表示され、文字列が後に表示された。プロパティがSymbolである場合は表示されたなかった。
