@@ -24,7 +24,7 @@ function returnPropertyName(obj){
 }
 
 
-
+/*
 let p = Object.defineProperties(
   {},
   {
@@ -83,3 +83,4 @@ console.log(
 
 console.log("関数にオブジェクトを渡し、結果を確認");
 console.log(returnPropertyName(q));
+*/
