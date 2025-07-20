@@ -1,0 +1,61 @@
+〇実行結果（変更前）
+
+$ npm test ch06/ex09
+
+> ex08@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch06/ex09
+
+ FAIL  ./index.test.js
+  ● Test suite failed to run
+
+    ReferenceError: jest is not defined
+
+    > 1 | const mock = jest.fn();
+        |              ^
+      2 |
+      3 | const obj = {
+      4 |   x: 0,
+
+      at jest (index.test.js:1:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        0.48 s
+Ran all test suites matching /ch06\\ex09/i.
+(node:36660) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+〇実行結果（変更後）
+$ npm test ch06/ex09
+
+> ex08@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch06/ex09
+
+ FAIL  ./index.test.js
+  ● Test suite failed to run
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "{\"x\":1,\"y\":2,\"sum\":3}"
+    Received: "{\"x\":1,\"y\":2,\"sum\":0}"
+
+      22 | obj.x = 1;
+      23 | obj.y = 2;
+    > 24 | expect(JSON.stringify(obj)).toBe(`{"x":1,"y":2,"sum":3}`);
+         |                             ^
+      25 | expect(mock).toHaveBeenCalled();
+      26 |
+      27 | //mockについて
+
+      at toBe (index.test.js:24:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        0.351 s
+Ran all test suites matching /ch06\\ex09/i.
+(node:38444) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+sumのメソッドを列挙可能に再定義したが、sum関数の返り値た3ではなく0となった。列挙可能な最適着を行いながら、obj.xとobj.yの値をsum()の結果に繁栄刺せる方法が不明。

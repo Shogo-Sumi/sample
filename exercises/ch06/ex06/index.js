@@ -5,24 +5,31 @@
 //Object.getOwnPropertySymbols()
 //https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols
 
-function returnPropertyName(obj){
-//オブジェクトが独自プロパティの場合の処理。
-		const own = [...Object.getOwnPropertyNames(obj)];//プロパティ名が文字列であれば、列挙不可なポロパティも配列に含める
-		const sym = [...Object.getOwnPropertySymbols(obj)];//プロパティ名がSymbolの独自プロパティの配列を返す。列挙不可の者も含む。
+export function returnPropertyName(obj) {
+  //オブジェクトが独自プロパティの場合の処理。
+  const own = [...Object.getOwnPropertyNames(obj)]; //プロパティ名が文字列であれば、列挙不可なポロパティも配列に含める
+  const sym = [...Object.getOwnPropertySymbols(obj)]; //プロパティ名がSymbolの独自プロパティの配列を返す。列挙不可の者も含む。
 
-//オブジェクトが継承プロパティの場合
-	const inheritance = [];
-	for (let a in obj){
-		console.log(obj,a,own.includes(a));
-		if (!own.includes(a)){//7.8.6.2 includes()メソッド参照。継承プロパティのプロパティ名は、symbolのものは必須としない。
-			inheritance.push(a);
-			console.log("flg1");
-		}
-	};
+  //オブジェクトが継承プロパティの場合
+  const inheritance = [];
+  for (let a in obj) {
+    console.log(obj, a, own.includes(a));
+    if (!own.includes(a)) {
+      //7.8.6.2 includes()メソッド参照。継承プロパティのプロパティ名は、symbolのものは必須としない。
+      inheritance.push(a);
+      //console.log("flg1");
+    }
+  }
 
-	return ["独自プロパティ(Symbol以外):",...own,"独自プロパティ(Symbol):",...sym,"継承プロパティ:",...inheritance];
+  return [
+    "独自プロパティ(Symbol以外):",
+    ...own,
+    "独自プロパティ(Symbol):",
+    ...sym,
+    "継承プロパティ:",
+    ...inheritance,
+  ];
 }
-
 
 /*
 let p = Object.defineProperties(

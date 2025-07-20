@@ -1,0 +1,42 @@
+〇実行結果
+
+$ npm test ch06/ex08
+
+> ex08@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch06/ex08
+
+(node:35148) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ PASS  ./index.test.js
+  restrict
+    √ 0: target,template,expected = {{}, {}, {}} (3 ms)
+    √ 1: target,template,expected = {{}, {"1": [Array], "a": [Object], Symbol(test): 3}, {}}
+    √ 2: target,template,expected = {{"1": [Array], "a": [Object], Symbol(test): 3}, {}, {Symbol(test): 3}} (1 ms)
+    √ 3: target,template,expected = {{"1": [Array], "a": [Object], Symbol(test): 3}, {"a": [Object]}, {"a": [Object], Symbol(test): 3}} (1 ms)
+    √ 4: target,template,expected = {{"1": [Array], "a": [Object], Symbol(test): 3}, {"1": [Array], "a": [Object]}, {"1": [Array], "a": [Object], Symbol(test): 3}} (1 ms)
+    √ 5: target,template,expected = {{"1": [Array], "a": "", Symbol(test): 3}, {"a": "", Symbol(test): 3}, {"a": "", Symbol(test): 3}}
+    √ 6: target,template,expected = {{"1": [Array], "a": "", Symbol(test): 3}, {"1": [Array], Symbol(test): 3}, {"1": [Array], Symbol(test): 3}} (4 ms)
+    √ 7: target,template,expected = {{}, {"parent": "parent"}, {}} (1 ms)
+    √ 8: target,template,expected = {{}, {}, {}} (1 ms)
+    √ 9: target,template,expected = {{"parent": "parent"}, {}, {}}
+  substract
+    √ 0: target,sources(1つ),expected = {{}, {}, {}} (1 ms)
+    √ 1: target,sources(1つ),expected = {{}, {"1": [Array], "a": [Object], Symbol(test): 3}, {}}
+    √ 2: target,sources(1つ),expected = {{"1": [Array], "a": [Object], Symbol(test): 3}, {}, {"1": [Array], "a": [Object], Symbol(test): 3}} (1 ms)
+    √ 3: target,sources(1つ),expected = {{"1": [Array], "a": [Object], Symbol(test): 3}, {"a": [Object]}, {"1": [Array], Symbol(test): 3}}
+    √ 4: target,sources(1つ),expected = {{"1": [Array], "a": [Object], Symbol(test): 3}, {"1": [Array], "a": [Object]}, {Symbol(test): 3}} (1 ms)
+    √ 5: target,sources(1つ),expected = {{"1": [Array], "a": "", Symbol(test): 3}, {"a": "", Symbol(test): 3}, {"1": [Array], Symbol(test): 3}}
+    √ 6: target,sources(1つ),expected = {{"1": [Array], "a": "", Symbol(test): 3}, {"1": [Array], Symbol(test): 3}, {"a": "", Symbol(test): 3}} (1 ms)
+    √ 7: target,sources(1つ),expected = {{}, {"parent": "parent"}, {}}
+    √ 8: target,sources(1つ),expected = {{"parent": "parent"}, {}, {"parent": "parent"}}
+    √ 0: target,sources(2つ),expected = {{}, [{}, {}], {}}
+    √ 1: target,sources(2つ),expected = {{"1": [Array], "a": [Object], Symbol(test): 3}, [{"a": [Object]}, {"1": [Array]}], {Symbol(test): 3}}
+    √ 2: target,sources(2つ),expected = {{}, [{}, {"parent": "parent"}], {}}
+    √ 3: target,sources(2つ),expected = {{"parent": "parent"}, [{}, {"parent": "parent"}], {}}
+
+Test Suites: 1 passed, 1 total
+Tests:       23 passed, 23 total
+Snapshots:   0 total
+Time:        0.513 s, estimated 1 s
+Ran all test suites matching /ch06\\ex08/i.
+

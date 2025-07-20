@@ -1,55 +1,83 @@
 //test実施
-import { add, sub, mul, div } from "./index.js";
+import { returnPropertyName } from "./index.js";
 
 //index.jsからテスト関数をインポート
 
-const a1 = { real: 1, imag: 2 }; // 1 + 2i
-const a2 = { real: 3, imag: 4 }; // 3 + 4i
+let p = Object.defineProperties(
+  {},
+  {
+    10: { value: 10, writable: true, enumerable: true, configurable: true },
+    20: { value: 20, writable: true, enumerable: false, configurable: true },
+    xx: { value: 30, writable: true, enumerable: true, configurable: true },
+    yy: { value: 40, writable: true, enumerable: false, configurable: true },
+  },
+);
 
-const a3 = { real: -1, imag: -2 }; // 5 + (-2i)
-const a4 = { real: 1, imag: 0 }; // 0 + i
+//プロパティ変更前の値の確認
+console.log("変更前のpの確認:", p["10"], p["20"], p.xx, p.yy);
+
+//pをプロトタイプとして持つオブジェクトを作成する。
+//数値名および文字列名のプロパティそれぞれについて、オブジェクトはプロトタイプと同名および同名でないプロパティを持つ
+
+let q = Object.create(p);
+console.log("pを継承したqを確認：", q["10"], q["20"], q.xx, q.yy);
+
+//オブジェクトqにプロトタイプと同名、同名でないプロパティを追加する。
+
+const sym00 = Symbol("abc");
+console.log(sym00);
+q[sym00] = 7;
+
+const sym00Test = Object.getOwnPropertySymbols(q);
+console.log(sym00Test);
+
+q = Object.defineProperties(q, {
+  1: { value: 1, writable: true, enumerable: false, configurable: true }, //同名
+  2: { value: 2, writable: true, enumerable: true, configurable: true }, //同名
+  0: { value: 5, writable: true, enumerable: true, configurable: true }, //同名でない
+  [sym00]: { value: 7, writable: true, enumerable: true, configurable: true }, //同名でない
+  x: { value: 3, writable: true, enumerable: false, configurable: true }, //同名
+  y: { value: 4, writable: true, enumerable: true, configurable: true }, //同名
+  a: { value: 6, writable: true, enumerable: true, configurable: true }, //同名でない
+});
+
+console.log(
+  "数値名および文字列名のオブジェクトについて、それぞれ同名、同名でないプロパティをqに追加:",
+  q["10"],
+  q["20"],
+  q.xx,
+  q.yy,
+  q["1"],
+  q["2"],
+  q["0"],
+  q[sym00],
+  q.x,
+  q.y,
+  q.a,
+);
+
+console.log("関数にオブジェクトを渡し、結果を確認");
+console.log(returnPropertyName(q));
 
 //テスト実施
-describe("math", () => {
+describe("test", () => {
   //関連するテストをmathとしてまとめたメソッド
-  describe("add", () => {
-    it("add test", () => {
-      expect(add(a1, a2)).toStrictEqual({ real: 4, imag: 6 });
-    });
-  });
-  describe("sub", () => {
-    it("sub test", () => {
-      expect(sub(a1, a2)).toStrictEqual({ real: -2, imag: -2 });
-    });
-  });
-  describe("mul", () => {
-    it("add test", () => {
-      expect(mul(a1, a2)).toStrictEqual({ real: -5, imag: 10 });
-    });
-  });
-  describe("div", () => {
-    it("add test", () => {
-      expect(div(a1, a2)).toStrictEqual({ real: 0.44, imag: 0.08 });
-    });
-  });
-  describe("add2", () => {
-    it("add test", () => {
-      expect(add(a3, a4)).toStrictEqual({ real: 0, imag: -2 });
-    });
-  });
-  describe("sub2", () => {
-    it("add test", () => {
-      expect(sub(a3, a4)).toStrictEqual({ real: -2, imag: -2 });
-    });
-  });
-  describe("mul2", () => {
-    it("mul test", () => {
-      expect(mul(a3, a4)).toStrictEqual({ real: -1, imag: -2 });
-    });
-  });
-  describe("div2", () => {
-    it("div test", () => {
-      expect(div(a3, a4)).toStrictEqual({ real: -1, imag: -2 });
+  describe("returnPropertyName", () => {
+    it("returnPropertyName test", () => {
+      expect(returnPropertyName(q)).toStrictEqual([
+        "独自プロパティ(Symbol以外):",
+        "0",
+        "1",
+        "2",
+        "x",
+        "y",
+        "a",
+        "独自プロパティ(Symbol):",
+        "Symbol(abc)",
+        "継承プロパティ:",
+        "10",
+        "xx",
+      ]);
     });
   });
 });

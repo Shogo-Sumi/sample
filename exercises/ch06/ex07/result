@@ -1,0 +1,251 @@
+〇実行結果
+
+$ npm test ch06/ex07
+
+> ex07@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch06/ex07
+
+  console.log
+    target= { foo: 'foo' }
+
+      at log (index.js:15:11)
+
+  console.log
+    target= {}
+
+      at log (index.js:15:11)
+
+  console.log
+    sorceから作成されるオブジェクトfrom= { foo: 'foo', bar: 'bar' }
+
+      at log (index.js:33:14)
+
+  console.log
+    取得したプロパティproperties= [ 'foo', 'bar' ]
+
+      at log (index.js:38:13)
+
+  console.log
+    sorceから作成されるオブジェクトfrom= { fizz: 'fizz', buzz: 'buzz' }
+
+      at log (index.js:33:14)
+
+  console.log
+    取得したプロパティproperties= [ 'fizz', 'buzz' ]
+
+      at log (index.js:38:13)
+
+  console.log
+    target= { foo: 'foo', hello: 'world' }
+
+      at log (index.js:15:11)
+
+  console.log
+    sorceから作成されるオブジェクトfrom= { foo: 'fooo', bar: 'bar' }
+
+      at log (index.js:33:14)
+
+  console.log
+    取得したプロパティproperties= [ 'foo', 'bar' ]
+
+      at log (index.js:38:13)
+
+  console.log
+    sorceから作成されるオブジェクトfrom= { foo: 'foooo', fizz: 'fizz', buzz: 'buzz' }
+
+      at log (index.js:33:14)
+
+  console.log
+    取得したプロパティproperties= [ 'foo', 'fizz', 'buzz' ]
+
+      at log (index.js:38:13)
+
+  console.log
+    target= { parent: { child: { foo: 'fooo', bar: 'bar' } } }
+
+      at log (index.js:15:11)
+
+  console.log
+    sorceから作成されるオブジェクトfrom= { parent: { child: { fizz: 'fizz', buzz: 'buzz' } } }
+
+      at log (index.js:33:14)
+
+  console.log
+    取得したプロパティproperties= [ 'parent' ]
+
+      at log (index.js:38:13)
+
+  console.log
+    target= { foo: 'foo', hello: 'world' }
+
+      at log (index.js:15:11)
+
+  console.log
+    sorceから作成されるオブジェクトfrom= [Number: 123]
+
+      at log (index.js:33:14)
+
+  console.log
+    取得したプロパティproperties= []
+
+      at log (index.js:38:13)
+
+  console.log
+    sorceから作成されるオブジェクトfrom= [Boolean: true]
+
+      at log (index.js:33:14)
+
+  console.log
+    取得したプロパティproperties= []
+
+      at log (index.js:38:13)
+
+  console.log
+    sorceから作成されるオブジェクトfrom= [ 'aa', 'bb', 'cc' ]
+
+      at log (index.js:33:14)
+
+  console.log
+    取得したプロパティproperties= [ '0', '1', '2' ]
+
+      at log (index.js:38:13)
+
+  console.log
+    target= 1
+
+      at log (index.js:15:11)
+
+  console.log
+    sorceから作成されるオブジェクトfrom= { foo: 'foo', bar: 'bar' }
+
+      at log (index.js:33:14)
+
+  console.log
+    取得したプロパティproperties= [ 'foo', 'bar' ]
+
+      at log (index.js:38:13)
+
+  console.log
+    target= true
+
+      at log (index.js:15:11)
+
+  console.log
+    sorceから作成されるオブジェクトfrom= { foo: 'foo', bar: 'bar' }
+
+      at log (index.js:33:14)
+
+  console.log
+    取得したプロパティproperties= [ 'foo', 'bar' ]
+
+      at log (index.js:38:13)
+
+  console.log
+    target= [ 'aa', 'bb', 'cc' ]
+
+      at log (index.js:15:11)
+
+  console.log
+    sorceから作成されるオブジェクトfrom= { foo: 'foo', bar: 'bar' }
+
+      at log (index.js:33:14)
+
+  console.log
+    取得したプロパティproperties= [ 'foo', 'bar' ]
+
+      at log (index.js:38:13)
+
+  console.log
+    target= Map(0) {}
+
+      at log (index.js:15:11)
+
+  console.log
+    sorceから作成されるオブジェクトfrom= { foo: 'foo', bar: 'bar' }
+
+      at log (index.js:33:14)
+
+  console.log
+    取得したプロパティproperties= [ 'foo', 'bar' ]
+
+      at log (index.js:38:13)
+
+  console.log
+    target= 2025-07-20T03:58:17.694Z
+
+      at log (index.js:15:11)
+
+  console.log
+    sorceから作成されるオブジェクトfrom= { foo: 'foo', bar: 'bar' }
+
+      at log (index.js:33:14)
+
+  console.log
+    取得したプロパティproperties= [ 'foo', 'bar' ]
+
+      at log (index.js:38:13)
+
+  console.log
+    target= null
+
+      at log (index.js:15:11)
+
+  console.log
+    target= undefined
+
+      at log (index.js:15:11)
+
+  console.log
+    target= { foo: 'foo' }
+
+      at log (index.js:15:11)
+
+  console.log
+    sorceから作成されるオブジェクトfrom= { [Symbol(sym1)]: 'symbol1' }
+
+      at log (index.js:33:14)
+
+  console.log
+    取得したプロパティproperties= []
+
+      at log (index.js:38:13)
+
+  console.log
+    target= { name: [Getter/Setter] }
+
+      at log (index.js:15:11)
+
+  console.log
+    sorceから作成されるオブジェクトfrom= { name: [Getter/Setter] }
+
+      at log (index.js:33:14)
+
+  console.log
+    取得したプロパティproperties= [ 'name' ]
+
+      at log (index.js:38:13)
+
+(node:28844) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ PASS  ./index.test.js
+  √ test case 0: expected: {"foo": "foo"}, exception: null (18 ms)
+  √ test case 1: expected: {"bar": "bar", "buzz": "buzz", "fizz": "fizz", "foo": "foo"}, exception: null (11 ms)
+  √ test case 2: expected: {"bar": "bar", "buzz": "buzz", "fizz": "fizz", "foo": "foooo", "hello": "world"}, exception: null (7 ms)
+  √ test case 3: expected: {"parent": [Object]}, exception: null (3 ms)
+  √ test case 4: expected: {"0": "aa", "1": "bb", "2": "cc", "foo": "foo", "hello": "world"}, exception: null (7 ms)
+  √ test case 5: expected: {"bar": "bar", "foo": "foo"}, exception: null (3 ms)
+  √ test case 6: expected: {"bar": "bar", "foo": "foo"}, exception: null (3 ms)
+  √ test case 7: expected: ["aa", "bb", "cc"], exception: null (2 ms)
+  √ test case 8: expected: Map {}, exception: null (3 ms)
+  √ test case 9: expected: 2025-07-20T03:58:17.694Z, exception: null (3 ms)
+  √ test case 10: expected: null, exception: [TypeError: Cannot convert undefined or null to object] (10 ms)
+  √ test case 11: expected: null, exception: [TypeError: Cannot convert undefined or null to object] (1 ms)
+  √ test case 12: expected: {"foo": "foo", Symbol(sym1): "symbol1"}, exception: null (3 ms)
+  √ test case 13: expected: {"name": "bob"}, exception: null (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       14 passed, 14 total
+Snapshots:   0 total
+Time:        0.581 s, estimated 1 s
+Ran all test suites matching /ch06\\ex07/i.
+
