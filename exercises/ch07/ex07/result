@@ -1,0 +1,43 @@
+〇実行結果
+$ npm test ch07/ex07
+
+> ex07@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch07/ex07
+
+(node:11560) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ PASS  ./index.test.js
+  test
+    test1
+      √ test1 (3 ms)
+    test2
+      √ test2 (1 ms)
+    test3
+      √ test3
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        0.482 s, estimated 1 s
+Ran all test suites matching /ch07\\ex07/i.
+
+
+〇計算量について
+・最悪の場合
+Tnをサイズnの配列を整列するのに必要な比較回数とすると
+Tn=n*(n-1)/2
+O(n^2)
+
+・最良の場合
+サイズnが2^kである配列がに分割されていくと仮定する.
+1つめの要素にに注目した場合、その要素の位置を確定させるまでに必要な分割回数はk回以下。
+（pivotに選ばれた要素の位置が確定するイベントがおこる）
+pivotの生成回数は配列サイズnに比べて十分に小さくなるため、オーダーの計算ではpivotの寄与を無視できる。
+よって１つの要素の比較回数はO(n)回となる。
+計算量はO(nk)=O(nlogn)となる
+
+・平均的な場合
+計算量O(nlogn)
+
+参考
+https://qiita.com/warper/items/ae769e105862bfa25310

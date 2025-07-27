@@ -1,0 +1,9 @@
+〇実行結果
+sumi6@MyComputer MINGW64 ~/javascript/github/sample/exercises/ch07/ex10 (main)
+$ node index.js
+0
+2
+5
+
+〇疑問
+index.jsにて作成したクラスを、index.test.jsでインポートする方法がわからなかったため、testの実施は行えなかった。今回の研修でクラスをインポートする方法を確認したい。
