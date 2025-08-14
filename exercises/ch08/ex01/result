@@ -1,0 +1,56 @@
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch08\ex01> npm test ch08/ex01
+
+> ex01@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch08/ex01
+
+  console.log
+    test 3
+
+      at log (index.js:14:9)
+
+  console.log                                                                                                                                                                                                                                
+    9                                                                                                                                                                                                                                        
+
+      at log (index.js:24:9)
+
+  console.log                                                                                                                                                                                                                                
+    1755157598906                                                                                                                                                                                                                            
+
+      at log (index.js:36:9)
+
+  console.log                                                                                                                                                                                                                                
+    1755157598907                                                                                                                                                                                                                            
+
+      at log (index.js:39:9)
+
+  console.log                                                                                                                                                                                                                                
+    test                                                                                                                                                                                                                                     
+
+      at log (index.js:7:17)
+
+  console.log                                                                                                                                                                                                                                
+    test                                                                                                                                                                                                                                     
+
+      at log (index.js:7:17)
+
+  console.log                                                                                                                                                                                                                                
+    test                                                                                                                                                                                                                                     
+
+      at log (index.js:7:17)
+
+  console.log                                                                                                                                                                                                                                
+    [ 'test', 'test', 'test' ]                                                                                                                                                                                                               
+
+      at log (index.js:10:13)
+
+(node:62716) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ PASS  ./index.test.js
+  √ Arrow (10 ms)                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                             
+Test Suites: 1 passed, 1 total                                                                                                                                                                                                               
+Tests:       1 passed, 1 total                                                                                                                                                                                                               
+Snapshots:   0 total
+Time:        0.37 s, estimated 1 s
+Ran all test suites matching /ch08\\ex01/i.
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch08\ex01> 
