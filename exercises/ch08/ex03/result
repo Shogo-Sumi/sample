@@ -1,0 +1,37 @@
+書籍 8.2.1 の 「再帰関数とスタック」には、関数が自身を数千回呼び出した場合はエラーが発生すると書かれている。
+
+1.プログラミング言語や処理系によっては、再帰呼び出しを関数の処理の末尾にする(末尾再帰)ことで、スタックオーバーフローが起こらないよう最適化できるものがある。末尾再帰は何故そのような最適化ができるのか答えなさい。
+
+〇予想
+再帰関数以外のメモリを多く使用する処理があった場合、再帰関数を末尾に記載することで、ほかのメモリを多く使用する処理で使用されるメモリが解放された後に実行できるため。
+
+〇調査結果
+・末尾再帰とはhttps://ja.wikipedia.org/wiki/%E6%9C%AB%E5%B0%BE%E5%86%8D%E5%B8%B0
+参考：
+再帰的な関数やプロシージャにおいて、自身の再帰呼び出しが、その計算における最後のステップになっているような再帰のパターンのことである[1]。
+再帰にかかわらず一般に、そのような最後の呼び出しを末尾呼び出し[注釈 1]という。
+呼び出しではなく、戻り先を保存しない飛び越し命令（いわゆる「GOTO文」）にコンパイラ最適化できるという特徴がある（#末尾呼出し最適化）[1]。
+
+・末尾呼び出しの例
+function f() {
+	return g(); // g()は末尾呼び出し
+}
+
+function f()の最後の処理が、g()の呼び出しのみで終わっている。
+
+このような場合、f()の結果は g()の結果そのものとなるため、呼び出し元の情報や引数の値を一時的に格納するスタックフレームについて、
+f()のスタックフレームをg()のスタックフレームとして再利用できるため最適化が可能となる。
+
+参考：https://qiita.com/pebblip/items/cf8d3230969b2f6b3132
+
+JavaScript で末尾再帰最適化を実装している処理系を答えなさい。
+利用できる環境があれば、実際に以下の URL を表示・実行してエラーが発生しないことを確認しなさい。
+https://www.typescriptlang.org/play?#code/GYVwdgxgLglg9mABMAhtOAnGKA2AKMALkTBAFsAjAUwwEpEBvAWAChFlxp4kYoa8ADhjgATENGKlKNADSIIccHwyTy1Oo1bt2MYIjwKlNRAD4S9Zm23sMVKCAxIho8VADcW7QF9PNuw55lQWExaEQAKnlFMGU5QxjjAGpEAEZaDysfK1t7R0RefhS5NIys1gUwAGc4HCoAOhw4AHM8VHQsXDwUgAZe3tp01iA
+
+実行した結果、スタックサイズに関するエラーが発生した(画像ファイル：fig)
+
+末尾最適化を実装している処理系については見つけることができなかった。
+下記のドキュメントから、対応しているエンジンがSafariで使用されているJavascriptCoreのみとの
+記載があるため、そもそも積極的に実装されているのか疑問が生じた。
+
+https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Language_overview
