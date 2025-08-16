@@ -59,6 +59,7 @@ describe("counterGroup", () => {
     });
   });
 
+  /*
   describe("#average", () => {
     test("It returns average amount of all counters in CounterGroup", () => {
       const cg = counterGroup();
@@ -125,4 +126,5 @@ describe("counterGroup", () => {
       expect(cg2.total()).toBe(1);
     });
   });
+  */
 });

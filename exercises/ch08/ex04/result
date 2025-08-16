@@ -1,0 +1,46 @@
+〇ソースコード
+const obj = {
+  om: function () {
+    const nest = {
+      nm: function () {
+        console.log(this === obj, this === nest);
+      },
+      arrow: () => {
+        console.log(this === obj, this === nest);
+      },
+    };
+    nest.nm();
+    nest.arrow();
+  },
+};
+obj.om();
+
+〇実行前の予想
+・ソースコードについて
+定数objはプロパティomを持つ。
+|-プロパティomはfunction()を値として持つ。
+　|-function()は定数nestを持つ。
+  ||-定数nestはプロパティnmとarrowを持つ。
+  | |-プロパティnmは関数宣言文を用いた関数を持つ。
+  | |-プロパティarrowはアロー関数を用いた関数を持つ。
+  |-nestのnm()を呼び出す
+  |-nestのarrow()を呼び出す。
+
+
+・obj.om()実行時の考察
+
+1.nest.nm()の実行
+this === objについては、関数宣言文を用いて宣言されており、nestの入れ子になっているためfalse
+this === nestについては、thisはオブジェクトnestを示しているためtrue
+
+2.nest.arrow()の実行
+教科書の記載から、アロー関数は  入れ子の場合でもthisの値を適切に継承する。
+よってthis === objはtrue
+this === nestはfalseになると予想する。
+
+〇実行結果
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch08\ex04> node index.js
+false true
+true false
+
+予想と結果があっていることを確認した。
