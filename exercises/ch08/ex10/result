@@ -1,0 +1,18 @@
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch08\ex10> npm test ch08/ex10
+
+> ex10@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch08/ex10
+
+(node:20948) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ PASS  ./index.test.js
+  addMyCall                                                                                                                                                 
+    √ When given function has no arg, then it can call this (2 ms)                                                                                          
+    √ When given function has 1 arg, then it can call this                                                                                                  
+    √ When given function has multiple args, then it can call this                                                                                          
+                                                                                                                                                            
+Test Suites: 1 passed, 1 total                                                                                                                              
+Tests:       3 passed, 3 total                                                                                                                              
+Snapshots:   0 total
+Time:        0.502 s, estimated 1 s
+Ran all test suites matching /ch08\\ex10/i.
