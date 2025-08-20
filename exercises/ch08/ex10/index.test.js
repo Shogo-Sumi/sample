@@ -1,4 +1,5 @@
-import { addMyCall } from "./index.ts";
+//import { addMyCall } from "./index.ts";
+import { addMyCall } from "./index.js";
 
 describe("addMyCall", () => {
   test("When given function has no arg, then it can call this", () => {
