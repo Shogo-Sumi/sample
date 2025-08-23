@@ -1,0 +1,69 @@
+〇実行結果
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch08\ex12> npm test ch08/ex12
+
+> ex11@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch08/ex12
+
+  console.log
+    42
+
+      at log (index.js:28:13)
+
+  console.log                                                                                         
+    42                                                                                                
+
+      at log (index.js:36:9)
+
+  console.log                                                                                         
+    $1 + 1                                                                                            
+
+      at log (index.js:28:13)
+
+  console.log                                                                                         
+    2                                                                                                 
+
+      at log (index.js:37:9)
+
+  console.log                                                                                         
+    $1 + $2 + $3 + $4 + $5 + $6 + $7 + $8 + $9 + $10                                                  
+
+      at log (index.js:28:13)
+
+  console.log                                                                                         
+    12Fizz4BuzzFizz78FizzBuzz                                                                         
+
+      at log (index.js:38:9)
+
+  console.log                                                                                         
+    { const result = $1 + $2;                                                                         
+     return result; }
+
+      at log (index.js:28:13)
+
+ FAIL  ./index.test.js
+  ● Test suite failed to run
+                                                                                                      
+    SyntaxError: Unexpected identifier 'result'
+        at new Function (<anonymous>)
+
+      27 | export function f(body){//fは引数として、関数の本体を受け取る
+      28 |     console.log(body);
+    > 29 |     return new Function('$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9', '$10', `return ${body}`);
+         |            ^
+      30 |     //new Function('$1','$2',...,'$10','<関数式>')であるため、関数式に引数10個が引き渡され る。
+      31 |     // function('$1',...$10){
+      32 |     // return $bodyに記載された処理
+
+      at f (index.js:29:12)
+      at f (index.js:51:5)
+
+Test Suites: 1 failed, 1 total                                                                        
+Tests:       0 total                                                                                  
+Snapshots:   0 total
+Time:        0.531 s, estimated 1 s
+Ran all test suites matching /ch08\\ex12/i.
+(node:25436) ExperimentalWarning: VM Modules is an experimental feature and might change at any time  
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+〇考察
+最後のテストについて数式の中にresultが含まれるためエラーとなる。回避策を調べたがわからなかった。

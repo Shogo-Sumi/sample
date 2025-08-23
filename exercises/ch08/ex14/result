@@ -1,0 +1,15 @@
+〇実行結果
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch08\ex14> node index.js  
+[Function (anonymous)]
+false
+true
+true
+true
+true
+true
+false
+false
+{ a: 1 }
+{
+  error: "SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)"
+}

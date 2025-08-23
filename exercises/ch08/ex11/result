@@ -1,0 +1,9 @@
+〇実行結果
+function isNaN() { [native code] }
+function test(a,b){
+    return a+b;
+}
+
+〇
+組み込み関数は[native code]という文字列となった。
+自作関数は関数のソースコード全体の文字列となった。

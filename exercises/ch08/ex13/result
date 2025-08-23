@@ -1,0 +1,36 @@
+〇実行結果
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch08\ex13> node index.js
+<anonymous_script>:3
+return "Hello, " + Bob
+                   ^
+
+ReferenceError: Bob is not defined
+    at eval (eval at f (C:\Users\sumi6\javascript\github\sample\exercises\ch08\ex13\index.js:4:13), <anonymous>:3:20)
+    at f (C:\Users\sumi6\javascript\github\sample\exercises\ch08\ex13\index.js:5:15)
+    at Object.<anonymous> (C:\Users\sumi6\javascript\github\sample\exercises\ch08\ex13\index.js:9:1)  
+    at Module._compile (node:internal/modules/cjs/loader:1554:14)
+    at Object..js (node:internal/modules/cjs/loader:1706:10)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)
+
+Node.js v22.14.0
+
+〇考察
+上記のようなエラーが発生して、実行できなかった。
+エラーメッセージの内容から、eval()と同様に、ユーザー側から悪意を持つコードを受け取る可能性があることが問題と考える。
+例えば、引数にrm * といったファイルを破壊する文字列を受け取る場合など。
+
+〇修正後ソースコード
+function f(input) {
+  return "Hello, " + input.toString();
+}
+
+Functionコンストラクタを使用しない実装に変更。入力値を文字列とするように変更。
+
+実行結果
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch08\ex13> node index.js
+Hello, Bob
+Hello, ls -l
