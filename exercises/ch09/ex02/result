@@ -1,0 +1,27 @@
+〇実行結果 
+node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch09/ex02
+
+  console.log
+    0
+
+      at log (index.js:17:9)
+
+  console.log                                                                                                                                                                                                                                
+    1                                                                                                                                                                                                                                        
+
+      at log (index.js:18:9)
+
+  console.log                                                                                                                                                                                                                                
+    2                                                                                                                                                                                                                                        
+
+      at log (index.js:19:9)
+
+(node:34648) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)                                                                                                                                                                      
+ PASS  ./index.test.js
+  √  (3 ms)
+                                                                                                                                                                                                                                             
+Test Suites: 1 passed, 1 total                                                                                                                                                                                                               
+Tests:       1 passed, 1 total                                                                                                                                                                                                               
+Snapshots:   0 total
+Time:        0.529 s
