@@ -1,0 +1,12 @@
+〇実行結果
+(node:26900) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ PASS  ./index.test.js
+  √  (6 ms)                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                             
+Test Suites: 1 passed, 1 total                                                                                                                                                                                                               
+Tests:       1 passed, 1 total                                                                                                                                                                                                               
+Snapshots:   0 total
+Time:        0.508 s, estimated 1 s
+Ran all test suites matching /ch09\\ex04/i.
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch09\ex04> 
