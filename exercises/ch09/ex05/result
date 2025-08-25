@@ -1,0 +1,52 @@
+〇実行結果
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch09\ex05> npm test ch09/ex05
+
+> ex05@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch09/ex05
+
+  console.log
+    {}
+
+      at log (index.js:20:11)
+
+  console.log                                                                                                                                                                                                                                
+    true true                                                                                                                                                                                                                                
+
+      at log (index.js:49:9)
+
+  console.log                                                                                                                                                                                                                                
+    test1 {}                                                                                                                                                                                                                                 
+
+      at log (index.js:20:11)
+
+  console.log                                                                                                                                                                                                                                
+    true true                                                                                                                                                                                                                                
+
+      at log (index.js:50:9)
+
+  console.log                                                                                                                                                                                                                                
+    {}
+
+      at log (index.js:20:11)
+
+  console.log                                                                                                                                                                                                                                
+    test1 {}                                                                                                                                                                                                                                 
+
+      at log (index.js:20:11)
+
+  console.log                                                                                                                                                                                                                                
+    {}                                                                                                                                                                                                                                       
+
+      at log (index.js:20:11)
+
+(node:28288) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)                                                                                                                                                                      
+ PASS  ./index.test.js
+  instanceof                                                                                                                                                                                                                                 
+    √ 作成した関数がinstanceofの結果と一致すること (12 ms)                                                                                                                                                                                   
+                                                                                                                                                                                                                                             
+Test Suites: 1 passed, 1 total                                                                                                                                                                                                               
+Tests:       1 passed, 1 total                                                                                                                                                                                                               
+Snapshots:   0 total
+Time:        0.515 s, estimated 1 s
+Ran all test suites matching /ch09\\ex05/i.
