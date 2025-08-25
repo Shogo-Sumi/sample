@@ -1,34 +1,21 @@
-import { instanceOf } from "./index.js";
+import { TypedMap,TypedMap2 } from "./index.js";
 
-class test1 {
-  constructor(height, width) {
-    this.height = height;
-    this.width = width;
-  }
-}
+const a = [["a", 1], ["b", 2]];
+const b = [[1, "a"], [2, "b"]];
+const p = new TypedMap('string', 'number', a);
+const q = new TypedMap('number', 'string', b);
+//const r = new TypedMap('number', 'string', a);
+const s = new TypedMap2('string', 'number', a);
+const t = new TypedMap2('number', 'string', b);
+//const u = new TypedMap2('number', 'string', a);
 
-class test2 extends test1 {
-  constructor(height, width, dimension) {
-    super(height, width);
-    this.dimension = dimension;
-  }
-}
-
-class test3 {
-  constructor(height, width) {
-    this.height = height;
-    this.width = width;
-  }
-}
-
-const o = new test1();
-const p = new test2();
-const q = new test3();
+//answer
+const string1 = "{keyType: 'string',valueType: 'number',map: Map(2) { 'a' => 1, 'b' => 2 }"
 
 describe("instanceof", () => {
   it("作成した関数がinstanceofの結果と一致すること", () => {
-    expect(instanceOf(o, test1)).toBe(o instanceof test1);
-    expect(instanceOf(p, test1)).toBe(p instanceof test1);
-    expect(instanceOf(o, test3)).toBe(o instanceof test3);
+    expect(console.log(p)).toStrictEqual(console.log(s));
+    expect(console.log(q)).toStrictEqual(console.log(t));
+    //expect(console.log(r)).toStrictEqual(console.log(u));
   });
 });

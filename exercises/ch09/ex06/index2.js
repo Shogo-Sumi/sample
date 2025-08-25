@@ -1,4 +1,4 @@
-class TypedMap extends Map {
+class TypedMap2 extends Map {
   constructor(keyType, valueType, entries) {
     //entriesが指定されている場合、型をチェックする。
     if (entries) {
@@ -33,8 +33,8 @@ class TypedMap extends Map {
 
 const a = [["a", 1], ["b", 2]];
 const b = [[1, "a"], [2, "b"]];
-const p = new TypedMap('string', 'number', a);
-const q = new TypedMap('number', 'string', b);
-const r = new TypedMap('string', 'number', a);
+const p = new TypedMap2('string', 'number', a);
+const q = new TypedMap2('number', 'string', b);
+const r = new TypedMap2('string', 'number', a);
 console.log(p);
 console.log(q);
