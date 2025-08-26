@@ -1,0 +1,18 @@
+〇実行結果
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch09\ex07> node index.js
+eat
+makesound
+bite
+eat
+makesound
+bite
+eat
+makesound
+scratch
+eat
+makesound
+fly
+eat
+makesound
+fly
