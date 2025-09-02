@@ -1,0 +1,33 @@
+〇実行結果
+
+r23000089@A081012340 MINGW64 /github/sample2/sample/exercises/ch09/ex08 (main)
+$ npm test ch09/ex08
+
+> ex08@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch09/ex08
+
+  console.log
+    alarmSet
+
+      at log (index.js:80:9)
+
+  console.log
+    soundAlarm
+
+      at log (index.js:84:9)
+
+(node:21616) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ PASS  ./index.test.js
+  AlarmClock Test
+    √ Event 1.setAlarm (3 ms)
+    √ Event 2.canelAlarm (1 ms)
+    √ Event 3.reachedToAlarmTime (1 ms)
+    √ Event 4.snooze
+    √ Event 5.elapseSnoozeTime
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        0.441 s
+Ran all test suites matching /ch09\\ex08/i.
