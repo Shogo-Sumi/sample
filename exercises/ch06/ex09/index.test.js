@@ -27,3 +27,5 @@ expect(mock).toHaveBeenCalled();
 //mockについて
 //テストメソッド内で何回呼び出されたかを.toHaveBeenCalledTimesで取得することができます。
 //https://qiita.com/only/items/466a09c8602466fe2333
+//
+//応えはtoJSONを使用するかきかた。obj.toJSON = () => obj.sum();
