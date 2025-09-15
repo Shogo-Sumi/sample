@@ -1,0 +1,8 @@
+〇noneの場合
+インポートしたsets.cjs,stats.cjsのソースコードの内容がコメントも含めて同じままmain_none.jsに記載されているように見える。
+
+〇developmentの場合
+他のファイルへの参照は残したまま、!*** ./stats.cjs ***!のような参照ヵ所にコメント付与されているように見える。
+
+〇productionの場合。
+インポートした、sets.cjs,tats.cjsの内容がmain_production.jsにまとめられているように見える。スペース、コメント、改行がなくなっているように見える。

@@ -1,0 +1,26 @@
+〇Javascriptのモジュール名
+参考：https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Modules
+
+・RequireJS
+参考：https://qiita.com/opengl-8080/items/196213867b859daea719
+JavaScript 用のモジュール管理フレームワークの１つ。
+
+JavaScript を実装していて、 view や model などで細かくファイルを分割していると、ファイル間の依存関係を意識して読み込む順序を注意しないといけなくなる。
+（<script> タグの読み込み順序を調整するか、もしくはコンカチしているのであれば、そのコンカチ順序を管理しないといけない）
+
+ファイル数が少なかったり、個人で開発しているのであれば手動管理でも大きな問題はない。
+しかし、ファイル数が多くなってきたり複数人で開発していると、手動管理では限界がある。
+
+RequireJS では、 JavaScript のコードをモジュールという単位で管理する。
+そして、各コードは実装の先頭で使用するモジュールを宣言する。
+
+RequireJS は使用するモジュールの宣言を元に、各モジュール間の依存関係を調べ、適切な順序で JavaScript のコードを読み込むようにしてくれる（<script> タグが自動で HTML に埋め込まれる）。
+
+・webpack
+参考：https://zenn.dev/sprout2000/articles/9d026d3d9e0e8f
+webpack とは、一言で言うと JavaScript 向けのモジュールバンドラーです。
+複数の JavaScript モジュールを一つ（またはいくつか）のファイルへバンドル（=bundle: 束にする、包む）してくれます。
+
+・Bable
+https://ja.wikipedia.org/wiki/Babel_(%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%91%E3%82%A4%E3%83%A9)
+Babelは、自由かつオープンソースのJavaScriptトランスコンパイラであり、主にECMAScript 2015+（ES6+）コードを古いJavaScriptエンジンで実行できる下位互換バージョンのJavaScriptに変換するために使用される。Babelは、JavaScriptプログラミング言語の最新機能を使用するための一般的なツールである[3]。
