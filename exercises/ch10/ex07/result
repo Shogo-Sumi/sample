@@ -1,0 +1,15 @@
+JavaScript/TypeScript の有名な日付操作の OSS リポジトリであるdate-fns、Luxon、Day.jsのそれぞれが、src ディレクトリ以下がどのようなまとまりでモジュール分割されているか分析して、それぞれ 2、3 段落程度で記述しなさい。
+
+〇date-fns
+ソースコード配下のモジュールから、各モジュールは、Days,Hours,WeekYearsといった日付単位に対して、
+add,difference,each,getといった実行する操作単位でモジュールを分割しているように見える。
+操作名＋操作を行う日付という形で分割している
+
+〇Luxon
+datetime.jsのインポートの内容から、datetime.jsをトップとして、インポートするjsファイルを階層構造に並べて分割しているように見える。
+datetime.jsはduration.jsをインポートしており、duration.jsはerrors.jsをインポートするなど、
+Topから下位のファイルのインポートを繰り返すモジュール分割に見える。
+
+〇Day.js
+index.jsはインポートするファイル一覧をまとめ、constant.jsは使用する定数をエクスポート、utils.jsは使用する関数をまとめているように見える。
+src直下には、jsファイルは上記の3つしか存在せず、目的に応じて個々のモジュールをsrc直下で集約しているように見える。

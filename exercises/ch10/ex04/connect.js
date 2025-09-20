@@ -1,0 +1,1 @@
+export { multi } from './sub3.js';

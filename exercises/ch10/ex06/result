@@ -1,0 +1,63 @@
+〇問題
+
+エクスポートしないjsファイルを複数回importする場合、import文の前後やimport先のコードの実行順序はどうなりますか。実証コードを作成し、予想してから実行結果を確認しなさい。
+
+〇実装内容
+・使用するモジュール
+main.js:メインモジュール
+connect.js：sub.jsをインポートするモジュール
+sub.js:エクスポートしないモジュール
+
+connect.js
+エクスポートなしのsub.jsを2回インポート。
+
+main.js
+sub.jsを2回インポート。その後、connect.jsを2回インポート。
+
+〇実行予想
+node main.jsの実行予想
+
+main.jsに記載されている、console.log('main.js before import')の結果表示される。
+
+import './sub.js'; //一度目のインポート　が実行されconsole.log('sub.js');の結果が表示される。
+
+main.jsに記載されている、console.log('main.js 1 import sub.js after')の結果が表示される。
+
+import './sub.js'; //二度目のインポート　が実行されconsole.log('sub.js');の結果が表示される。
+
+main.jsに記載されている、console.log('main.js 2 import sub.js after')の結果が実行される。
+
+connect.js内のimport './sub.js';//1回目のインポートが実行されconsole.log('sub.js');の結果が表示される。
+
+connect.jsに記載されている、console('connect.js 1 sub.js import after');の結果が表示される。
+
+connect.js内のimport './sub.js';//2回目のインポートが実行されconsole.log('sub.js');の結果が表示される。
+
+connect.jsに記載されている、console.log('connect.js 2 sub.js import after');の結果が表示される。
+
+connect.jsに記載されている、console.log('connect.js finish');の結果が表示される。
+
+〇実行結果
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch10\ex06> node main.js
+sub.js
+connect.js 1 sub.js import after
+connect.js 2 sub.js import after
+connect.js finish
+main.js before import
+main.js 1 import sub.js after
+main.js 2 import sub.js after
+main.js 3 import connect.js after
+
+connect.jsに記載された内容が最初に実施された。
+sub.js
+connect.js 1 sub.js import after
+connect.js 2 sub.js import after
+connect.js finish
+その際、2回目のsub.jsのインポートの実行結果は表示されていない。
+
+その後、main.jsに記載された内容が最初に実施された。
+main.js before import
+main.js 1 import sub.js after
+main.js 2 import sub.js after
+main.js 3 import connect.js after
+その際、sub.jsのインポートの実行結果は表示されていない。
