@@ -1,0 +1,17 @@
+〇実行結果
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex02> npm test ch11/ex02
+
+> ex02@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch11/ex02
+
+(node:29404) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ PASS  ./index.test.js
+  Test cache                                                                                                                                                                                                                                 
+    √ set関数が正しく動作すること (3 ms)                                                                                                                                                                                                     
+                                                                                                                                                                                                                                             
+Test Suites: 1 passed, 1 total                                                                                                                                                                                                               
+Tests:       1 passed, 1 total                                                                                                                                                                                                               
+Snapshots:   0 total
+Time:        0.514 s, estimated 1 s
+Ran all test suites matching /ch11\\ex02/i.
