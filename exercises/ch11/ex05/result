@@ -1,0 +1,23 @@
+〇実行結果
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex05> npm test ch11/ex05
+
+> ex05@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch11/ex05
+
+(node:5672) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ PASS  ./index.test.js
+  √ detectFileType(...) === PDF (3 ms)                                                                                                                                                                                                       
+  √ detectFileType(...) === ZIP (1 ms)                                                                                                                                                                                                       
+  √ detectFileType(...) === ZIP                                                                                                                                                                                                              
+  √ detectFileType(...) === ZIP                                                                                                                                                                                                              
+  √ detectFileType(...) === GIF (1 ms)                                                                                                                                                                                                       
+  √ detectFileType(...) === GIF                                                                                                                                                                                                              
+  √ detectFileType(...) === PNG                                                                                                                                                                                                              
+  √ detectFileType(...) === UNKNOWN                                                                                                                                                                                                          
+                                                                                                                                                                                                                                             
+Test Suites: 1 passed, 1 total                                                                                                                                                                                                               
+Tests:       8 passed, 8 total                                                                                                                                                                                                               
+Snapshots:   0 total
+Time:        0.574 s
+Ran all test suites matching /ch11\\ex05/i.
