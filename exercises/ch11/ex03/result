@@ -1,0 +1,28 @@
+〇実行結果
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex03> npm test ch11/ex03
+
+> ex03@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch11/ex03
+
+  console.log
+    Uint32Array(2) [ 2575857510, 287454020 ]
+
+      at log (index.js:46:9)
+
+  console.log                                                                                                                                                                                                                                
+    Uint32Array(2) [ 1719109785, 1144201745 ]
+
+      at log (index.js:47:9)
+
+(node:10224) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)                                                                                                                                                                      
+ PASS  ./index.test.js
+  Test littleTobig                                                                                                                                                                                                                           
+    √ set関数が正しく動作すること (4 ms)                                                                                                                                                                                                     
+                                                                                                                                                                                                                                             
+Test Suites: 1 passed, 1 total                                                                                                                                                                                                               
+Tests:       1 passed, 1 total                                                                                                                                                                                                               
+Snapshots:   0 total
+Time:        0.521 s, estimated 1 s
+Ran all test suites matching /ch11\\ex03/i.

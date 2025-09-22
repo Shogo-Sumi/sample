@@ -1,0 +1,17 @@
+〇予想
+書籍にて、Array()の代わりにUint8Array()を使った場合に、作者の実行速度が速くなり、メモリ使用量が減少したとこ記載があることから、
+配列を使用するよりも、型付き配列をしようした方が速くなると予想する。
+
+〇実行結果
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex04> node index.js
+arrayMultiply: 616.4442999999999
+typedArrayMultiply: 910.3326999999999
+
+通常の配列を使用した方が、型付き配列を使用した場合よりも速くなった。
+const [N, K, M] = [100, 200, 300];
+
+配列のサイズを3倍にした場合も、通常の配列を使用した方が速くなった。
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex04> node index.js
+arrayMultiply: 16888.199099999998
+typedArrayMultiply: 25645.933300000004
+const [N, K, M] = [300, 600, 900];
