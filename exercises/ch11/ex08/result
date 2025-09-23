@@ -1,0 +1,9 @@
+〇考察
+利用者が入力した文字列：^(a|aa)+$
+検索対象："aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!"
+
+^(a|aa)+$について、
+a,aa,aaa,aaaa,aaaaa....aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+となるまで、aの個数を増やして検索対象とマッチするまで繰り返し比較が行われると考える。
+しかも、今回の入力文字列では！が末尾に記載されているため、一致しないという判断が、
+最後に行われるため、時間がかかると考えられる。
