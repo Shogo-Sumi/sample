@@ -1,0 +1,46 @@
+〇実行結果
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex10> npm test ch11/ex10
+
+> ex10@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch11/ex10
+
+  console.log
+    31
+
+      at log (index.js:11:9)
+
+  console.log                                                                                                                                                                                                                                
+    22                                                                                                                                                                                                                                       
+
+      at log (index.js:31:9)
+
+  console.log
+    月曜日
+
+      at log (index.js:43:9)
+
+  console.log                                                                                                                                                                                                                                
+    月曜日
+
+      at log (index.js:44:9)
+
+  console.log                                                                                                                                                                                                                                
+    27                                                                                                                                                                                                                                       
+
+      at log (index.js:47:9)
+
+(node:29652) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)                                                                                                                                                                      
+ PASS  ./index.test.js
+  Test littleTobig                                                                                                                                                                                                                           
+    √ set関数が正しく動作すること (6 ms)                                                                                                                                                                                                     
+                                                                                                                                                                                                                                             
+Test Suites: 1 passed, 1 total                                                                                                                                                                                                               
+Tests:       1 passed, 1 total                                                                                                                                                                                                               
+Snapshots:   0 total
+Time:        0.542 s, estimated 1 s
+Ran all test suites matching /ch11\\ex10/i.
+
+〇4つ目の関数については、getMonth、setMonthが使えないため、getYearとgetDateから
+対象の月を特定しなければならいと考えた。
+しかし、月を特定する方法がわからずに作成できなかった。

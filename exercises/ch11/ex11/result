@@ -1,0 +1,72 @@
+〇実行結果
+6回実行した結果
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex11> node index.js
+0.000006579999999999586
+1.5805000000000008e-8
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex11> node index.js
+0.0000050799999999998844
+1.8020999999999957e-8
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex11> node index.js
+0.0000054500000000000884
+1.515900000000002e-8
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex11> node index.js
+0.0000050799999999998844
+2.7347999999999928e-8
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex11> node index.js
+0.000005900000000000105
+6.661400000000015e-8
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex11> node index.js
+0.000010120000000000218
+-2.8190000000002158e-9
+
+6回目の結果で負の値を返した。
+
+設定値を変更しての実行結果　5回分
+console.log(costOfLength(10));
+console.log(costOfLength(1000000000));
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex11> node index.js
+0.0003500000000002501
+1.133478e-7
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex11> node index.js
+0.00032999999999958616
+5.84050000000002e-9
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex11> node index.js
+0.00042000000000008697
+-3.627819999999997e-8
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex11> node index.js
+0.0004000000000001336
+8.410999999999831e-10
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex11> node index.js
+0.00034999999999989483
+8.345000000000482e-10
+
+〇考察
+・負の値を返すことについて
+
+costOfLengthPlusLoopはres = str.lengthにて、も文字列の長さを格納する処理を実装
+costOfLoopはfor文の中で、処理は実施していない（空のループを実行）
+どちらの関数も同じ回数for文を回している。普通に考えたら、処理時間はcostOfLengthPlusLoopが長いと考えられる。
+
+最初の処理の1回目の実行結果は
+1.5805000000000008e-8＝1.58...*10^(-8)
+負の値が出現した6回目の実行結果は
+8.345000000000482e-10＝8.345...*10^(-10)
+
+どちらの計算結果もナノ秒オーダーでの結果となっている。
+両方の関数の実行結果が十分に小さい値となっていることから、片方もしくは両方の関数の処理時間の計測に
+誤差が含まれているため、負の値になったのではと推測する。
+
+・引数の値を大きくすれば大きくする程結果が小さくなることについて
+N=100000000の場合とN=1000000000の場合では必ずしもN=1000000000の時の計算結果が小さくなったわけではないが、
+小さな値を示すこともあった。
+このことについては、costOfLength(N)内のreturn (lhs - rhs) / N;が原因と推測する。
+lhs - rhsの計算結果がN数によらず一定に近い値をとる場合、Nの値が十分に大きくなると、(lhs - rhs) / Nの値は小さくなる。
+よってlhs - rhsの増加量がNの回数増加よりも計算結果に与える影響が小さいため、Nの値を大きくすることで計算結果が小さくなっていると考える。
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+〇実行結果
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex12> node index.js
+Id '1' and Password testtest is Succeed 
+id or password is not udefined or null
+Error: Id '1' And Password (test) must be 8 characters or more
