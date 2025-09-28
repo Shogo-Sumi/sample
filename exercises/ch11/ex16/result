@@ -1,0 +1,226 @@
+〇実行結果
+
+index.test.jsにてテストを実行しようとしたところ、エラーが発生したため、index.js内でテストを実行した。
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex16> node index.js
+[Function: returnTrue] true
+実行結果: true
+[Function: returnFalse] false
+[AsyncFunction: returnRandom] false
+[Function: returnFalse] false
+[AsyncFunction: returnRandom] false
+[Function: returnFalse] false
+[AsyncFunction: returnRandom] false
+[Function: returnFalse] false
+実行結果: false
+[AsyncFunction: returnRandom] true
+実行結果: true
+
+
+
+〇index.test.jsでのエラーメッセージ
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch11\ex16> npm test ch11/ex16
+
+> ex16@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch11/ex16
+
+(node:2176) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ FAIL  ./index.test.js
+  Test function                                                                                                                                                                                                                              
+    × テストが正しく動作すること (3 ms)                                                                                                                                                                                                      
+                                                                                                                                                                                                                                             
+  ● Test function › テストが正しく動作すること                                                                                                                                                                                               
+                                                                                                                                                                                                                                             
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: "true"
+    Received: undefined
+
+      20 | it("テストが正しく動作すること", async () => {
+      21 |     const outcome = await retryWithExponentialBackoff(returnTrue, 3, logResult);
+    > 22 |     expect(outcome).toStrictEqual("true");
+         |                     ^
+      23 |   });
+      24 | });
+      25 |
+
+      at Object.toStrictEqual (index.test.js:22:21)
+
+Test Suites: 1 failed, 1 total                                                                                                                                                                                                               
+Tests:       1 failed, 1 total                                                                                                                                                                                                               
+Snapshots:   0 total
+Time:        0.519 s, estimated 1 s
+Ran all test suites matching /ch11\\ex16/i.
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "[Function: returnTrue] true".
+
+      10 |     attempts++;
+      11 |     const result = await func();//非同期でfunc関数を呼び出す。呼び出した結果は、trueまたはfalse。
+    > 12 |     console.log(func,result);
+         |             ^
+      13 |
+      14 |     if (result) {
+      15 |       //resultの結果trueならば、コールバック関数を呼び出し終了。
+
+      at console.log (../node_modules/@jest/console/build/CustomConsole.js:141:10)
+      at Timeout.attempt [as _onTimeout] (index.js:12:13)
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "実行結果: true".
+
+      41 |   return false;
+      42 | }
+    > 43 |
+         | ^
+      44 | async function returnRandom(){
+      45 |   return Math.random() > 0.5;
+      46 | }
+
+      at console.log (../node_modules/@jest/console/build/CustomConsole.js:141:10)
+      at logResult (index.js:43:11)
+      at Timeout.attempt [as _onTimeout] (index.js:15:7)
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "[Function: returnFalse] false".
+
+      10 |     attempts++;
+      11 |     const result = await func();//非同期でfunc関数を呼び出す。呼び出した結果は、trueまたはfalse。
+    > 12 |     console.log(func,result);
+         |             ^
+      13 |
+      14 |     if (result) {
+      15 |       //resultの結果trueならば、コールバック関数を呼び出し終了。
+
+      at console.log (../node_modules/@jest/console/build/CustomConsole.js:141:10)
+      at Timeout.attempt [as _onTimeout] (index.js:12:13)
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "[AsyncFunction: returnRandom] true".
+
+      10 |     attempts++;
+      11 |     const result = await func();//非同期でfunc関数を呼び出す。呼び出した結果は、trueまたはfalse。
+    > 12 |     console.log(func,result);
+         |             ^
+      13 |
+      14 |     if (result) {
+      15 |       //resultの結果trueならば、コールバック関数を呼び出し終了。
+
+      at console.log (../node_modules/@jest/console/build/CustomConsole.js:141:10)
+      at Timeout.attempt [as _onTimeout] (index.js:12:13)
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "実行結果: true".
+
+      41 |   return false;
+      42 | }
+    > 43 |
+         | ^
+      44 | async function returnRandom(){
+      45 |   return Math.random() > 0.5;
+      46 | }
+
+      at console.log (../node_modules/@jest/console/build/CustomConsole.js:141:10)
+      at logResult (index.js:43:11)
+      at Timeout.attempt [as _onTimeout] (index.js:15:7)
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "[Function: returnTrue] true".
+
+      10 |     attempts++;
+      11 |     const result = await func();//非同期でfunc関数を呼び出す。呼び出した結果は、trueまたはfalse。
+    > 12 |     console.log(func,result);
+         |             ^
+      13 |
+      14 |     if (result) {
+      15 |       //resultの結果trueならば、コールバック関数を呼び出し終了。
+
+      at console.log (../node_modules/@jest/console/build/CustomConsole.js:141:10)
+      at Timeout.attempt [as _onTimeout] (index.js:12:13)
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "true".
+
+      10 |
+      11 | async function returnRandom(){
+    > 12 |   return Math.random() > 0.5;
+         |           ^
+      13 | }
+      14 |
+      15 | function logResult(message){
+
+      at console.log (../node_modules/@jest/console/build/CustomConsole.js:141:10)
+      at logResult (index.test.js:12:11)
+      at Timeout.attempt [as _onTimeout] (index.js:15:7)
+
+Jest did not exit one second after the test run has completed.
+
+'This usually means that there are asynchronous operations that weren't stopped in your tests. Consider running Jest with `--detectOpenHandles` to troubleshoot this issue.
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "[Function: returnFalse] false".
+
+      10 |     attempts++;
+      11 |     const result = await func();//非同期でfunc関数を呼び出す。呼び出した結果は、trueまたはfalse。
+    > 12 |     console.log(func,result);
+         |             ^
+      13 |
+      14 |     if (result) {
+      15 |       //resultの結果trueならば、コールバック関数を呼び出し終了。
+
+      at console.log (../node_modules/@jest/console/build/CustomConsole.js:141:10)
+      at Timeout.attempt [as _onTimeout] (index.js:12:13)
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "[Function: returnFalse] false".
+
+      10 |     attempts++;
+      11 |     const result = await func();//非同期でfunc関数を呼び出す。呼び出した結果は、trueまたはfalse。
+    > 12 |     console.log(func,result);
+         |             ^
+      13 |
+      14 |     if (result) {
+      15 |       //resultの結果trueならば、コールバック関数を呼び出し終了。
+
+      at console.log (../node_modules/@jest/console/build/CustomConsole.js:141:10)
+      at Timeout.attempt [as _onTimeout] (index.js:12:13)
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "[Function: returnFalse] false".
+
+      10 |     attempts++;
+      11 |     const result = await func();//非同期でfunc関数を呼び出す。呼び出した結果は、trueまたはfalse。
+    > 12 |     console.log(func,result);
+         |             ^
+      13 |
+      14 |     if (result) {
+      15 |       //resultの結果trueならば、コールバック関数を呼び出し終了。
+
+      at console.log (../node_modules/@jest/console/build/CustomConsole.js:141:10)
+      at Timeout.attempt [as _onTimeout] (index.js:12:13)
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "実行結果: false".
+
+      41 |   return false;
+      42 | }
+    > 43 |
+         | ^
+      44 | async function returnRandom(){
+      45 |   return Math.random() > 0.5;
+      46 | }
+
+      at console.log (../node_modules/@jest/console/build/CustomConsole.js:141:10)
+      at logResult (index.js:43:11)
+      at Timeout.attempt [as _onTimeout] (index.js:20:7)
