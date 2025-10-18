@@ -1,0 +1,194 @@
+//調査対象の操作
+
+1.明示的にイテレータプロトコルの next() を呼び出す
+〇調査コード
+let test1 = counterIter(3);
+console.log(test1.next());
+console.log(test1.next());
+console.log(test1.next());
+console.log(test1.next());
+
+〇実行結果
+counterIter
+counterIter: next
+{ value: 1, done: false }
+counterIter: next
+{ value: 2, done: false }
+counterIter: next
+{ value: 3, done: false }
+counterIter: next
+{ value: undefined, done: true }
+
+〇動作の説明
+    next() {//next()が呼び出された時の処理
+      console.log("counterIter: next");
+      if (c >= max + 1) {//試行回数が最大値+1の値よりも大きい場合、doneはtrueを返す。
+        return { value: undefined, done: true };
+      }
+      const value = c;//定数にcの値を格納
+      c++;//cを1つ増加
+      //console.log(c);//cの値確認用追加ソースコード。
+      //console.log(value);//valuの値確認用追加ソースコード。
+      return { value, done: false };//c<max+1の場合doneはfalseを返す。
+    },
+
+next()の呼び出しのうち最初の3回はif文の分岐に入らなかった。
+4回目の呼び出しでif文の分岐に入ったことが確認できた。
+
+2.明示的にイテレータプロトコルの return() を呼び出す
+〇調査コード
+let test2 = counterIter(3);
+console.log(test2.return(3));
+console.log(test2.return(2));
+console.log(test2.return(1));
+console.log(test2.return(0));
+
+〇実行結果
+counterIter
+counterIter: return: 3
+{ value: 3, done: true }
+counterIter: return: 2
+{ value: 2, done: true }
+counterIter: return: 1
+{ value: 1, done: true }
+counterIter: return: 0
+{ value: 0, done: true }
+
+〇動作の説明
+    return(value) {//returnメソッドは現在のvalueを返す
+      console.log("counterIter: return:", value);
+      return { value, done: true };//この場合、doneはtrueを返す
+    },
+
+return()の呼び出しの結果、valueの値は関数の呼び出しで渡した引数、doneの値はtrueとなった。
+
+3.明示的にイテレータプロトコルの throw() を呼び出す
+〇調査コード
+let test3 = counterIter(3);
+try{
+  test3.throw(new Error("Test3"));
+} catch(e){
+  console.log("Error Massage:",e.message);
+}
+
+〇実行結果
+counterIter
+counterIter: throw: Error: Test3
+    at file:///C:/Users/sumi6/javascript/github/sample/exercises/ch12/ex01/index.js:67:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:271:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:578:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Error Massage: Test3
+{ value: 0, done: true }
+
+〇動作の説明
+    throw(e) {//throwメソッドは例外を返す。
+      console.log("counterIter: throw:", e);
+      throw e;
+    },
+
+throw()の呼び出しの結果、引数で渡したメッセージがコンソールログに表示された。
+
+
+4.for-of ループを実行
+〇調査コード
+let test4 = counterGen(3);
+for(const value of test4){
+  console.log(value);
+}
+
+〇実行結果
+counterGen
+counterGen: next
+1
+counterGen: next
+2
+counterGen: next
+3
+counterGen: finally
+
+〇動作の説明
+  console.log("counterGen");
+  try {//try処理
+    for (let c = 1; c <= max; c++) {//cの値がmax以下である場合、ログを表示し、yieldへcの値を代入？
+      console.log("counterGen: next");
+      yield c;
+    }
+  } finally {//finally処理。最終的なログを表示
+    console.log("counterGen: finally");
+  }
+
+for-ofのループを呼び出し、3回ループを実行した。結果として、yield cの値が3まで増加したことが分かった。
+
+5.for-of ループを実行途中で break
+〇調査コード
+let test5 = counterGen(3);
+for(const value of test5){
+  console.log(value);
+  if (value == 2){
+    break;
+  }
+}
+
+〇実行結果
+counterGen
+counterGen: next
+1
+counterGen: next
+2
+counterGen: finally
+
+〇動作の説明
+  console.log("counterGen");
+  try {//try処理
+    for (let c = 1; c <= max; c++) {//cの値がmax以下である場合、ログを表示し、yieldへcの値を代入？
+      console.log("counterGen: next");
+      yield c;
+    }
+  } finally {//finally処理。最終的なログを表示
+    console.log("counterGen: finally");
+  }
+
+for-ofのループを呼び出し、3回ループを実行した。2回目のループでbreakしたところ、
+for-ofの処理は途中で終了し、finallyの処理が実行された。
+
+6.for-of ループを実行中に例外発生
+〇調査コード
+let test6 = counterGen(3);
+try{
+  for(const value of test6){
+    console.log(value);
+    if (value === 2){
+      throw new Error("Test6")
+    }
+  }
+} catch (e) {
+    console.log(e.message);
+  }
+
+〇実行結果
+counterGen
+counterGen: next
+1
+counterGen: next
+2
+counterGen: finally
+Test6
+
+〇動作の説明
+  console.log("counterGen");
+  try {//try処理
+    for (let c = 1; c <= max; c++) {//cの値がmax以下である場合、ログを表示し、yieldへcの値を代入？
+      console.log("counterGen: next");
+      yield c;
+    }
+  } catch (e) {//catch処理、エラーの表示
+    console.log("counterGen: catch:", e);
+    throw e;
+  } finally {//finally処理。最終的なログを表示
+    console.log("counterGen: finally");
+  }
+
+for-of ループを実行中に例外処理を発生させた。2回目のループで例外処理を呼び出したところ、
+for-ofの処理は途中で終了し、finallyの処理が実行された。
+
