@@ -11,9 +11,11 @@ export function fibonacciSequence(){
   }
  }
 
+ /*
  const fib = fibonacciSequence();
  console.log(fib.next());
  console.log(fib.next());
  console.log(fib.next());
  console.log(fib.next());
  console.log(fib.next());
+ */

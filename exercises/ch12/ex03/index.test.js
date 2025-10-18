@@ -1,34 +1,47 @@
-import { modifyUrl } from "./index.js";
+import { counter } from "./index.js";
 
-describe("modifyUrl", () => {
-  it("returns URL string", () => {
-    expect(() => {
-      modifyUrl({
-        base: "invalid format",
-      });
-    }).toThrow();
-    expect(
-      modifyUrl({
-        base: "https://example.com/foo?a=b",
-      }),
-    ).toBe("https://example.com/foo?a=b");
-    expect(
-      modifyUrl({
-        base: "https://example.com/foo?a=b",
-        addQuery: [
-          ["p", "x"],
-          ["パラメータ", "y"],
-        ],
-      }),
-    ).toBe(
-      "https://example.com/foo?a=b&p=x&%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF=y",
-    );
-    expect(
-      modifyUrl({
-        base: "https://example.com/foo?a=b",
-        addQuery: [["foo", "bar"]],
-        path: "./buz",
-      }),
-    ).toBe("https://example.com/buz?a=b&foo=bar");
-  });
-});
+ const test1 = counter();
+
+describe("counter", () => {
+    it("checks 3 step counter", () => {
+        expect(test1.next()).toStrictEqual({ value: 1, done: false });
+        expect(test1.next()).toStrictEqual({ value: 2, done: false });
+        expect(test1.next()).toStrictEqual({ value: 3, done: false });
+    }
+  )
+    it("checks reset step", () => {
+        try {
+            test1.throw(new Error("reset"));
+            console.log("Counter reset");
+        } catch (e) {
+            if (e.message !== "reset") {
+                console.error("Unexpected error:", e.message); //リセット以外のエラー発生
+                }
+            }
+    }
+)
+    it("checks 3 step counter", () => {
+        expect(test1.next()).toStrictEqual({ value: 1, done: false });
+        expect(test1.next()).toStrictEqual({ value: 2, done: false });
+        expect(test1.next()).toStrictEqual({ value: 3, done: false });
+    }
+)
+    it("checks not reset step", () => {
+        try {
+            test1.throw(new Error("not reset"));
+            console.log("Counter not reset");
+        } catch (e) {
+            if (e.message !== "reset") {
+                console.error("Unexpected error:", e.message); //リセット以外のエラー発生
+                }
+            }
+    }
+)
+    it("checks 3 step counter", () => {
+        expect(test1.next()).toStrictEqual({ value: 4, done: false });
+        expect(test1.next()).toStrictEqual({ value: 5, done: false });
+        expect(test1.next()).toStrictEqual({ value: 6, done: false });
+    }
+)
+}
+)
