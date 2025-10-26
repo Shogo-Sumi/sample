@@ -1,0 +1,22 @@
+
+〇実行結果
+テストの実装方法がわからなかったため、コンソールの出力にて確認する。
+
+Node.js v22.14.0
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch12\ex06> node index.js
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch12\\ex06\\test',
+  isDirectory: true
+}
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch12\\ex06\\test\\file1',
+  isDirectory: false
+}
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch12\\ex06\\test\\test2',
+  isDirectory: true
+}
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch12\\ex06\\test\\test2\\file2',
+  isDirectory: false
+}
