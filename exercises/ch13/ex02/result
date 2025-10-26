@@ -118,3 +118,62 @@ A
 1秒経過後にYが表示され、Aが表示された。
 エラーYが発生した時点で、catch(e)が動作しYが表示され、finallyに記載されているAが表示された？
 
+・f10
+  // 予想:
+  // 1秒後にcatch((e) => log(e.message))が表示され(Y)、最後にlogAが表示される。
+  //
+  // 説明:
+  // f9と同じ動作になると考える。errYはthenで処理され、e.messageを表示し、その後logAが表示されると予想する。
+
+回答
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+A
+file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:37
+  throw new Error("Y");
+        ^
+
+Error: Y
+    at errY (file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:37:9)
+
+Node.js v22.14.0
+
+1秒経過後にAが表示され、ほぼ同時にエラーが表示された。
+catch(e)の代わりにthenは機能しない？
+
+・f11
+  // 予想:
+  // 即座にcatchにてlog(e.message)Xが表示されると予想する。
+  //
+  // 説明:
+  // f9と同じ動作になると考える。errXはcatchで処理され、e.messageを表示する。
+
+回答
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+X
+
+即座にXが表示された。catchでエラーメッセージを取得しe.messageが表示された。
+
+
+・f12
+  // 予想:
+  // catchの処理は実行されず、errXのエラーメッセージが表示されると予想する。
+  //
+  // 説明:
+  // setTimeout内でのerrX()は、catchが外側にあるため実行されないと予想する。
+
+回答
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:34
+  throw new Error("X");
+  ^
+
+Error: X
+    at errX (file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:34:9)
+    at Timeout._onTimeout (file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:196:22)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+
+Node.js v22.14.0
+
+エラーが表示された。予想と同じ結果になった？
+
