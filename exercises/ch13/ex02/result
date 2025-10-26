@@ -28,3 +28,33 @@ Node.js v22.14.0
 最初にCが出力され、ほぼ同時にAが出力された。Bは出力されずエラーメッセージが表示された。
 
 ・f4
+  // NOTE: f4の動作
+  //
+  // 回答:
+  // 2秒後に A が出力され、return 40で40を返す。その後に1秒後に、Bが出力され、return100で100を返す。その後に変数vの値が表示される。
+  //
+  // 説明:
+  // wait2の解決後に logA が実行され、wait(1000)の解決後 (B 出力),その後vの値100が出力される。
+
+回答
+  PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+A
+B
+100
+
+予想通りの結果に見える。
+
+・f5
+  // NOTE: f4の動作
+  //
+  // 回答:
+  // 2秒後に A が出力され、return 40で40を返す。その後に1秒後に、Bが出力され、return100で100を返す。その後に変数vの値が表示される。
+  //
+  // 説明:
+  // wait2の解決後に logA が実行され、wait(1000)の解決後 (B 出力),その後vの値100が出力される。
+
+回答
+  PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+A
+B
+100
