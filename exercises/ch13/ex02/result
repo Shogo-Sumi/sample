@@ -1,30 +1,30 @@
-〇予想
-longRuningFunction()は処理が記載されていない、無限ループの関数。
-setTimeout(() => console.log("Hello, world!"), 1000);
-は、1000msec後にコンソールログへ出力する関数。
+〇予想と回答
 
-setTimeoutが先に記載されているため、1秒後にHello, world!が出力され、
-その後無限ループに入ると考える。
 
-〇実行結果
-Hello, world!は表示されず、無限ループに入った。
-longRunningFunction();をコメントアウトして実行すると、1秒後にHello, world!が実行された。
+  予想
+  図解はmdファイルに記載
+  
+・f3
+  // NOTE: f2の動作
+  //
+  // 回答:
+  // 0秒後に A が出力され、その後にエラー処理が実行され、Bが出力される。その後にCが出力される。
+  //
+  // 説明:
+  // wait0の解決後に logA が実行され、wait2().then(errX) の解決後 (B 出力),その後 finallyが実行されlogCが実行されるため。
 
-〇考察
-タスクについて
-https://developer.mozilla.org/ja/docs/Web/API/HTML_DOM_API/Microtask_guide
+  回答
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+C
+A
+file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:34
+  throw new Error("X");
+        ^
 
-・抜粋
-タスクとは、プログラムの初期実行、イベントコールバックの実行、インターバルやタイムアウトの発生など、標準的なメカニズムによって実行がスケジュールされる JavaScript コードのことです。これらはすべてタスクキューにスケジューリングされます。
+Error: X
+    at errX (file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:34:9)
 
-タスクは、以下の場合にタスクキューに追加されます。
+Node.js v22.14.0
+最初にCが出力され、ほぼ同時にAが出力された。Bは出力されずエラーメッセージが表示された。
 
-新しい JavaScript プログラムやサブプログラムが（コンソールから、あるいは <script> 要素内のコードを実行して）直接実行されたとき。
-イベントが発生し、イベントのコールバック関数がタスクキューに追加された場合。
-setTimeout() または setInterval() で作成したタイムアウトまたはインターバルに達すると、対応するコールバックがタスクキューに追加されます。
-
-コードを駆動するイベントループは、これらのタスクがキューに入れられた順番に次々と処理します。イベントループの一回の処理中に、タスクキューで最も古い実行可能なタスクが実行されます。その後、マイクロタスクキューが空になるまでマイクロタスクが実行され、ブラウザーはレンダリングの更新を選べます。その後、ブラウザーはイベントループの次の反復処理に移されます。
-
-・ソースコードの動作について
-setTimeoutによって1000msec後に、consoleログの呼び出しが行われ、対応するコールバックがタスクキューに追加される。。
-ただし、1000msecの間に、logRunningFunction()が呼び出されて、タスクキューが占有され続けるため、setTimeout()の処理が実行されなかったと推測する。
+・f4

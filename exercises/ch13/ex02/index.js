@@ -197,4 +197,6 @@ function f12() {
   }).catch((e) => log(e.message));
 }
 
-f1();
+
+//test
+f3();
