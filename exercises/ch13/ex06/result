@@ -1,0 +1,17 @@
+参考URL:
+https://job-support.ne.jp/blog/javascript/howto-jquery
+https://beck23.hatenablog.com/entry/2014/11/08/022842
+
+〇jQueryとは
+jQueryはJavascriptのライブラリの一種。特徴として、動きのあるWebサイトを使用する際によく使用される。
+SNSへのリンクボタンの設置や、サイトをスクロールしていくと画像が変化するといった機能に使用される。
+jQueryを使用すると、JavaScriptをそのまま記述するよりも簡単にこれらの機能を追加できる。
+
+〇Promiseとの関係
+Javascriptで複数の連動する非同期処理をうまく扱うための標準モジュールとしてjQuery.Defrredがある。
+jQuery.Deferredは複数の連続する非同期処理を単純で分かりやすく記載できるようにする。
+これは、複数の非同期処理ひとつひとつに、Promiseオブジェクトを割り当てて、それを伝搬することで実現される。
+Promiseオブジェクトは、割り当てられた非同期処理が成功しているか否か等の状態を持つオブジェクト。
+pending,resolved,rejectedの3つがある。
+
+jQuery.Deferredを使うべき場面は、Javascriptの非同期処理を連続して、複数回実行したいとき。
