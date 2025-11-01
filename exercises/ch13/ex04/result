@@ -1,0 +1,15 @@
+〇実行結果
+index_origin.js
+比較のため、例題の実行結果を記載する。
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex04> node index_origin.js
+読み込み中: ./example
+---
+最初のファイルのサイズ: 19 bytes
+全ファイルの合計サイズ: 1642 bytes
+
+
+index.jsの結果
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex04> node index.js       
+最初のファイルのサイズ: 19
+合計サイズ: 1642
