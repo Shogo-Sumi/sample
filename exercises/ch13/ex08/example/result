@@ -1,0 +1,17 @@
+〇実行結果
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex08> ls
+
+
+    ディレクトリ: C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex08
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2025/11/02     19:37                example
+-a----        2025/11/02     19:37           1677 index.js
+
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex08> node index.js
+最初のファイルのサイズ: 19
+合計サイズ: 1642
