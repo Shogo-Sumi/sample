@@ -4,176 +4,75 @@
   予想
   図解はmdファイルに記載
   
-・f3
+・i1
   // 予想:
-  // 0秒後に A が出力され、その後にエラー処理が実行され、Bが出力される。その後にCが出力される。
+  // 1秒後に 42 が出力され、その後1秒後に42が出力される。
   //
   // 説明:
-  // wait0の解決後に logA が実行され、wait2().then(errX) の解決後 (B 出力),その後 finallyが実行されlogCが実行されるため。
+  // Promise.anyは1つでも履行されるとその結果をPromiseに返すため、v=100の処理は実行されないと考える。。
 
   回答
-PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
-C
-A
-file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:34
-  throw new Error("X");
-        ^
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex09> node index.js
+42
+100
 
-Error: X
-    at errX (file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:34:9)
+1秒後に42が表示され、その2秒後に100が表示された。予想と反する結果になったが理由がわかなかった。
 
-Node.js v22.14.0
-最初にCが出力され、ほぼ同時にAが出力された。Bは出力されずエラーメッセージが表示された。
-
-・f4
+・f2
   // 予想:
-  // 2秒後に A が出力され、return 40で40を返す。その後に1秒後に、Bが出力され、return100で100を返す。その後に変数vの値が表示される。
+  // 1秒後に C が出力され、その1秒後(開始から2秒後)に、Bが出力され、その1秒後(開始から3秒後)にAが表示され、その直後にVが表示される。
   //
   // 説明:
-  // wait2の解決後に logA が実行され、wait(1000)の解決後 (B 出力),その後vの値100が出力される。
+  // Promise.allはすべてPromiseが完了するまで待つため、C,B,Aの出力後Vの結果が表示される。。
 
 回答
-  PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
-A
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex09> node index.js
+C
 B
-100
+A
+[ 'A', 'B', 'C' ]
 
 予想通りの結果に見える。
 
-・f5
+・i3
   // 予想:
-  // 2秒後に A が出力され、return 40で40を返す。その後に1秒後に、Bが出力され、return100で100を返す。その後に変数vの値が表示される。
+  // 1秒後に errY が出力され、その後Vの値42が出力される。その後に3秒後に、Vの値42が出力される。
   //
   // 説明:
-  // wait2の解決後に logA が実行され、wait1()の解決後 (B 出力),その後vの値100が出力される。
+  // Promise.allは1つでもRejectedが返ると即座にエラー処理に移るため、errYが実行され、その後logVが実行され、3秒後に再度logVが実行されると考える。
 
 回答
-PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex09> node index.js
+Y
+42
 B
-A
-40
+0
 
-2つ目の引数が関数ではなくPromiseになっているため、Bが最初に表示された？その後Aが表示され、
-vの値が表示されたvは40。Bの処理が先に実施されてv=100がその後のAの処理で40へ上書きされた？
+errYが実行され、その後logVが実行されたが、次の処理がBの値が実行されて、V＝0が出力された。
+2回目のlogVが実行されるまでのwait3の待ち時間の間に、logBの処理と、V=0の処理が実行された？
 
-・f6
+・i4
   // 予想:
-  // 1秒後に A が出力され、その後に1秒後に、Bが出力され、Aが表示されてから2秒後にＣが表示される。
+  // p2のfor文が最初に実行される。その後、p2のwait2が実行される。p2のwait2が実行中にp1のwait1,for文の処理が完了する。
+  // その後、p1のwait2の処理が実行される。p1のwait2の実行中に、p2のwait2が完了し、v=nextが実行される。
+  // その後p1のwait2が完了し、v=nextが実行される。
   //
   // 説明:
-  // wait1の解決後に logA が実行され、同時にBとCのwait1,wait2が同時に実行される。
+  // p1,p2の処理がそれぞれ独立して実行される。先にp2のv=nextが実行され、v=5となり、その後p1のv=nextが実行され、v=5が実行される。
+  // よって出力Ｖは5となる。
 
 回答
-PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
-A
-B
-C
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex09> node index.js
+5
 
-Aが表示後1秒後にBが表示され、その1秒後にCが表示された。
 予想と同じ結果と考える。
 
-・f7
-  // 予想:
-  // 1秒後に A が出力され、その後は出力されない
-  //
-  // 説明:
-  // const p = wait1().then(logA);の時点でpは解決済みのため、その後thenを呼び出しても動作しないと予想する。
+・i5
+i4について、v=10となるようにソースコードを変更したi5の実行結果を記載する。
 
-回答
-PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
-A
-B
-C
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex09> node index.js
+10
 
-1秒経過後にAが表示され、その2秒後に同時にBとCが表示された。
-解決済みの場合でも処理は実行されるようだ。
-
-・f8
-  // 予想:
-  // 1秒後にerrXが表示され、その後errYが表示される。その後、catch((e) => log(e.message))が表示され、最後にlogAが表示される。
-  //
-  // 説明:
-  // errXとerrYはエラーメッセージを表示し、その後e.messageの内容が表示される。その後logAが表示されると予想する。
-
-回答
-PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js           
-X
-A
-
-1秒経過後にXが表示され、Aが表示された。
-エラーXが発生した時点で、catch(e)が動作しXが表示され、finallyに記載されているAが表示された？
-
-・f9
-  // 予想:
-  // 1秒後にcatch((e) => log(e.message))が表示され(Y)、最後にlogAが表示される。
-  //
-  // 説明:
-  // errYはcatchで処理され、e.messageを表示し、その後logAが表示されると予想する。
-
-回答
-PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
-Y
-A
-
-1秒経過後にYが表示され、Aが表示された。
-エラーYが発生した時点で、catch(e)が動作しYが表示され、finallyに記載されているAが表示された？
-
-・f10
-  // 予想:
-  // 1秒後にcatch((e) => log(e.message))が表示され(Y)、最後にlogAが表示される。
-  //
-  // 説明:
-  // f9と同じ動作になると考える。errYはthenで処理され、e.messageを表示し、その後logAが表示されると予想する。
-
-回答
-PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
-A
-file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:37
-  throw new Error("Y");
-        ^
-
-Error: Y
-    at errY (file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:37:9)
-
-Node.js v22.14.0
-
-1秒経過後にAが表示され、ほぼ同時にエラーが表示された。
-catch(e)の代わりにthenは機能しない？
-
-・f11
-  // 予想:
-  // 即座にcatchにてlog(e.message)Xが表示されると予想する。
-  //
-  // 説明:
-  // f9と同じ動作になると考える。errXはcatchで処理され、e.messageを表示する。
-
-回答
-PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
-X
-
-即座にXが表示された。catchでエラーメッセージを取得しe.messageが表示された。
-
-
-・f12
-  // 予想:
-  // catchの処理は実行されず、errXのエラーメッセージが表示されると予想する。
-  //
-  // 説明:
-  // setTimeout内でのerrX()は、catchが外側にあるため実行されないと予想する。
-
-回答
-PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
-file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:34
-  throw new Error("X");
-  ^
-
-Error: X
-    at errX (file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:34:9)
-    at Timeout._onTimeout (file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:196:22)
-    at listOnTimeout (node:internal/timers:594:17)
-    at process.processTimers (node:internal/timers:529:7)
-
-Node.js v22.14.0
-
-エラーが表示された。予想と同じ結果になった？
-
+p2の処理を先に完了させて、v=5が確定した状態で、p1のv=nextが実行されるように、
+p2のソースコードのawait wait2();をコメントアウトした。
+v=10の実行結果が得られた。

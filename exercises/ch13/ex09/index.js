@@ -53,6 +53,7 @@ async function i1() {
   log(v);
 }
 
+//Promise.allは複数のPromiseが全て完了するまで結果を返すのを待つ。
 async function i2() {
   const v = await Promise.all([
     wait3().then(() => {
@@ -71,6 +72,7 @@ async function i2() {
   log(v);
 }
 
+//Promise.allは1つでもrejectedが返されると、イバン最初に拒否されたエラーメッセージを返す。
 async function i3() {
   // NOTE: all で引数の1つが失敗すると他の Promise はどうなるだろうか
   let v = 42;
@@ -96,6 +98,7 @@ async function i3() {
   }
 }
 
+//処理はPromise.allでp1,p2がそれぞれ実行される。
 async function i4() {
   // NOTE: 複数の非同期処理が1つの変数に対し書き込みを行う場合、読み込みと書き込みの間に await が入るとどうなるだろうか
   let v = 0;
@@ -121,6 +124,35 @@ async function i4() {
   log(v);
 }
 
+async function i5() {
+  // NOTE: 複数の非同期処理が1つの変数に対し書き込みを行う場合、読み込みと書き込みの間に await が入るとどうなるだろうか
+  let v = 0;
+
+  const p1 = async () => {
+    await wait1();
+    for (let i = 0; i < 5; i++) {
+      const next = v + 1;
+      await wait2();
+      v = next;
+    }
+  };
+
+  const p2 = async () => {
+    for (let i = 0; i < 5; i++) {
+      const next = v + 1;
+      //await wait2(); //<--ここをコメントアウト
+      v = next;
+    }
+  };
+
+  await Promise.all([p1(), p2()]);
+  log(v);
+}
 
 
-i1();
+
+//i1();
+//i2();
+//i3();
+//i4();
+i5();
