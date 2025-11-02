@@ -1,0 +1,84 @@
+〇予想と回答
+
+
+  予想
+  図解はmdファイルに記載
+  
+・h1
+  // 予想:
+  // 3秒後に A が出力され、2秒後Bが出力され、1秒後にCが出力される。
+  //
+  // 説明:
+  // wait3の解決後に logA が実行され、wait2の解決後に logB が実行され、wait1の解決後に logC が実行される
+
+  回答
+  予想通りの結果に見える
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex07> node index.js
+A
+B
+C
+
+・h2
+  // 予想:
+  // 実行直後にエラー処理が実行される。
+  //
+  // 説明:
+  // h2関数実行直後にerrX()が実行され、エラーメッセージが表示される。
+
+回答
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex07> node index.js
+X
+
+予想通りの結果に見える。
+
+・h3
+  // 予想:
+  // 実行直後にエラー処理が実行される。
+  //
+  // 説明:
+  // h3関数実行直後にerrX()が実行され、エラーメッセージが表示される。h2と同じ結果になると考える。
+
+回答
+表示結果がh2の時と異なっている。エラーメッセージが複数表示された。
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex07> node index.js
+C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex07\index.js:34
+  throw new Error("X");
+        ^
+
+Error: X
+    at errX (C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex07\index.js:34:9)
+    at C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex07\index.js:64:5
+    at new Promise (<anonymous>)
+    at h3 (C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex07\index.js:63:3)
+    at Object.<anonymous> (C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex07\index.js:87:1)
+    at Module._compile (node:internal/modules/cjs/loader:1554:14)
+    at Object..js (node:internal/modules/cjs/loader:1706:10)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+
+Node.js v22.14.0
+
+・h4
+  // 予想:
+  // 2秒後に errXのエラーメッセージ が出力され、その後に1秒後に、errYのエラーメッセージがBが出力される。
+  //
+  // 説明:
+  // p1,p2が非同期処理になっているため、p1の処理が完了後p2の処理が実行されると考える。
+
+回答
+待ち時間が短いerrYの方が先に実行され、以降の処理は実行されなかった。
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex07> node index.js
+C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex07\index.js:37
+  throw new Error("Y");
+        ^
+
+Error: Y
+    at errY (C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex07\index.js:37:9)
+    at C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex07\index.js:75:7
+
+Node.js v22.14.0
