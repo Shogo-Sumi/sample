@@ -1,0 +1,179 @@
+〇予想と回答
+
+
+  予想
+  図解はmdファイルに記載
+  
+・f3
+  // 予想:
+  // 0秒後に A が出力され、その後にエラー処理が実行され、Bが出力される。その後にCが出力される。
+  //
+  // 説明:
+  // wait0の解決後に logA が実行され、wait2().then(errX) の解決後 (B 出力),その後 finallyが実行されlogCが実行されるため。
+
+  回答
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+C
+A
+file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:34
+  throw new Error("X");
+        ^
+
+Error: X
+    at errX (file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:34:9)
+
+Node.js v22.14.0
+最初にCが出力され、ほぼ同時にAが出力された。Bは出力されずエラーメッセージが表示された。
+
+・f4
+  // 予想:
+  // 2秒後に A が出力され、return 40で40を返す。その後に1秒後に、Bが出力され、return100で100を返す。その後に変数vの値が表示される。
+  //
+  // 説明:
+  // wait2の解決後に logA が実行され、wait(1000)の解決後 (B 出力),その後vの値100が出力される。
+
+回答
+  PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+A
+B
+100
+
+予想通りの結果に見える。
+
+・f5
+  // 予想:
+  // 2秒後に A が出力され、return 40で40を返す。その後に1秒後に、Bが出力され、return100で100を返す。その後に変数vの値が表示される。
+  //
+  // 説明:
+  // wait2の解決後に logA が実行され、wait1()の解決後 (B 出力),その後vの値100が出力される。
+
+回答
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+B
+A
+40
+
+2つ目の引数が関数ではなくPromiseになっているため、Bが最初に表示された？その後Aが表示され、
+vの値が表示されたvは40。Bの処理が先に実施されてv=100がその後のAの処理で40へ上書きされた？
+
+・f6
+  // 予想:
+  // 1秒後に A が出力され、その後に1秒後に、Bが出力され、Aが表示されてから2秒後にＣが表示される。
+  //
+  // 説明:
+  // wait1の解決後に logA が実行され、同時にBとCのwait1,wait2が同時に実行される。
+
+回答
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+A
+B
+C
+
+Aが表示後1秒後にBが表示され、その1秒後にCが表示された。
+予想と同じ結果と考える。
+
+・f7
+  // 予想:
+  // 1秒後に A が出力され、その後は出力されない
+  //
+  // 説明:
+  // const p = wait1().then(logA);の時点でpは解決済みのため、その後thenを呼び出しても動作しないと予想する。
+
+回答
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+A
+B
+C
+
+1秒経過後にAが表示され、その2秒後に同時にBとCが表示された。
+解決済みの場合でも処理は実行されるようだ。
+
+・f8
+  // 予想:
+  // 1秒後にerrXが表示され、その後errYが表示される。その後、catch((e) => log(e.message))が表示され、最後にlogAが表示される。
+  //
+  // 説明:
+  // errXとerrYはエラーメッセージを表示し、その後e.messageの内容が表示される。その後logAが表示されると予想する。
+
+回答
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js           
+X
+A
+
+1秒経過後にXが表示され、Aが表示された。
+エラーXが発生した時点で、catch(e)が動作しXが表示され、finallyに記載されているAが表示された？
+
+・f9
+  // 予想:
+  // 1秒後にcatch((e) => log(e.message))が表示され(Y)、最後にlogAが表示される。
+  //
+  // 説明:
+  // errYはcatchで処理され、e.messageを表示し、その後logAが表示されると予想する。
+
+回答
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+Y
+A
+
+1秒経過後にYが表示され、Aが表示された。
+エラーYが発生した時点で、catch(e)が動作しYが表示され、finallyに記載されているAが表示された？
+
+・f10
+  // 予想:
+  // 1秒後にcatch((e) => log(e.message))が表示され(Y)、最後にlogAが表示される。
+  //
+  // 説明:
+  // f9と同じ動作になると考える。errYはthenで処理され、e.messageを表示し、その後logAが表示されると予想する。
+
+回答
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+A
+file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:37
+  throw new Error("Y");
+        ^
+
+Error: Y
+    at errY (file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:37:9)
+
+Node.js v22.14.0
+
+1秒経過後にAが表示され、ほぼ同時にエラーが表示された。
+catch(e)の代わりにthenは機能しない？
+
+・f11
+  // 予想:
+  // 即座にcatchにてlog(e.message)Xが表示されると予想する。
+  //
+  // 説明:
+  // f9と同じ動作になると考える。errXはcatchで処理され、e.messageを表示する。
+
+回答
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+X
+
+即座にXが表示された。catchでエラーメッセージを取得しe.messageが表示された。
+
+
+・f12
+  // 予想:
+  // catchの処理は実行されず、errXのエラーメッセージが表示されると予想する。
+  //
+  // 説明:
+  // setTimeout内でのerrX()は、catchが外側にあるため実行されないと予想する。
+
+回答
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex02> node index.js
+file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:34
+  throw new Error("X");
+  ^
+
+Error: X
+    at errX (file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:34:9)
+    at Timeout._onTimeout (file:///C:/Users/sumi6/javascript/github/sample/exercises/ch13/ex02/index.js:196:22)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+
+Node.js v22.14.0
+
+エラーが表示された。予想と同じ結果になった？
+
