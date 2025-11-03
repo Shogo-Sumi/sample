@@ -1,0 +1,67 @@
+〇変更前ソースコードの実行結果
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex13> node index.js
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch13\\ex13',
+  isDirectory: true
+}
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch13\\ex13\\A',
+  isDirectory: true
+}
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch13\\ex13\\B',
+  isDirectory: true
+}
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch13\\ex13\\B\\C',
+  isDirectory: true
+}
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch13\\ex13\\B\\C\\buz.txt',
+  isDirectory: false
+}
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch13\\ex13\\foo.txt',
+  isDirectory: false
+}
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch13\\ex13\\index.js',
+  isDirectory: false
+}
+
+〇改修後の実行結果
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex13> node index.js
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch13\\ex13\\A',
+  isDirectory: true
+}
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch13\\ex13\\B',
+  isDirectory: true
+}
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch13\\ex13\\B\\C',
+  isDirectory: true
+}
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch13\\ex13\\B\\C\\buz.txt',
+  isDirectory: false
+}
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch13\\ex13\\foo.txt',
+  isDirectory: false
+}
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch13\\ex13\\index.js',
+  isDirectory: false
+}
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch13\\ex13\\index_origin.js',
+  isDirectory: false
+}
+{
+  path: 'C:\\Users\\sumi6\\javascript\\github\\sample\\exercises\\ch13\\ex13\\result',
+  isDirectory: false
+}

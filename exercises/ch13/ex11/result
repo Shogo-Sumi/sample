@@ -1,0 +1,10 @@
+〇実行結果
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex11> node index.js
+最終結果: OK!
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex11> node index.js
+最終結果: OK!
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch13\ex11> node index.js
+Attempt 1 failed. Retry in 100ms...
+Attempt 2 failed. Retry in 200ms...
+Attempt 3 failed. Retry in 400ms...
+最終結果: OK!
