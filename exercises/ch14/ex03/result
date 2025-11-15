@@ -1,0 +1,54 @@
+〇実行結果
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch14\ex03> npm test ch14/ex03
+
+> ex03@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch14/ex03
+
+  console.log
+    false
+
+      at IgnoreAccentPattern.log (index.js:67:13)
+          at String.match (<anonymous>)
+
+(node:14372) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ FAIL  ./index.test.js
+  IgnoreAccentPattern                                                                                                                                                                                                       
+    search                                                                                                                                                                                                                  
+      √ found test (2 ms)                                                                                                                                                                                                   
+      √ not found test (3 ms)                                                                                                                                                                                               
+    match                                                                                                                                                                                                                   
+      × found test (18 ms)                                                                                                                                                                                                  
+      √ not found test                                                                                                                                                                                                      
+                                                                                                                                                                                                                            
+  ● IgnoreAccentPattern › match › found test                                                                                                                                                                                
+                                                                                                                                                                                                                            
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: ["Cafe"]
+    Received: {"0": "Cafe", "index": 7, "input": "Coffee Café", "length": 1}
+
+      17 |       expect(
+      18 |         "Coffee Café".match(new IgnoreAccentPattern("Cafe")),
+    > 19 |       ).toStrictEqual("Coffee Cafe".match("Cafe"));
+         |         ^
+      20 |       expect(
+      21 |         "Coffee Café".match(new IgnoreAccentPattern(/Cafe/g)),//正規表現 gは正規表現のフラグ、一致する文字列が複数ある場合にすべてを対象とする。
+      22 |       ).toStrictEqual(["Cafe"]);
+
+      at Object.toStrictEqual (index.test.js:19:9)
+
+Test Suites: 1 failed, 1 total                                                                                                                                                                                              
+Tests:       1 failed, 3 passed, 4 total                                                                                                                                                                                    
+Snapshots:   0 total
+Time:        0.543 s, estimated 1 s
+Ran all test suites matching /ch14\\ex03/i.
+
+〇結果について
+下記のテストのみ合格できなかった。
+      expect(
+        "Coffee Café".match(new IgnoreAccentPattern("Cafe")),
+      ).toStrictEqual("Coffee Cafe".match("Cafe"));
+
+    Expected: ["Cafe"]
+    Received: {"0": "Cafe", "index": 7, "input": "Coffee Café", "length": 1}

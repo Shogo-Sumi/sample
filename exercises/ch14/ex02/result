@@ -1,0 +1,17 @@
+〇実行結果
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch14\ex02> npm test ch14/ex02
+
+> ex02@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch14/ex02
+
+(node:18200) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ PASS  ./index.test.js
+  √ MyArray.map() (3 ms)                                                                                                                                                                                                    
+  √ MyArray.slice() (1 ms)                                                                                                                                                                                                  
+                                                                                                                                                                                                                            
+Test Suites: 1 passed, 1 total                                                                                                                                                                                              
+Tests:       2 passed, 2 total                                                                                                                                                                                              
+Snapshots:   0 total
+Time:        0.512 s, estimated 1 s
+Ran all test suites matching /ch14\\ex02/i.

@@ -11,6 +11,7 @@ test("Unwritable and unconfigurable object", () => {
   expect(() => delete a.a).toThrow();
 });
 
+
 test("Writable and unconfigurable object", () => {
   const b = writableAndUnconfigurableObj();
   expect(b).toStrictEqual({ b: 2 });
@@ -18,6 +19,7 @@ test("Writable and unconfigurable object", () => {
   expect(b.b).toBe(3);
   expect(() => delete b.b).toThrow();
 });
+
 
 test("Nested unwritable object", () => {
   const c = nestedUnwritableObj();
