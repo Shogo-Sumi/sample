@@ -1,0 +1,21 @@
+〇実行結果
+> ex04@1.0.0 test
+> node --experimental-vm-modules ../node_modules/jest/bin/jest.js --runInBand ch14/ex04
+
+(node:21972) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ PASS  ./index.test.js
+  Hiraganaクラス                                                                                                                                                                                                            
+    √ hint === "string" のときはひらがなが返る (1 ms)                                                                                                                                                                       
+    √ hint === "number" のときは UTF-16 コード単位が返る                                                                                                                                                                    
+    √ hint === "default" または不明なときはひらがなが返る                                                                                                                                                                   
+    コンストラクタのバリデーション                                                                                                                                                                                          
+      √ 不正な入力 (14 ms)                                                                                                                                                                                                  
+  比較演算子によるソート                                                                                                                                                                                                    
+    √ <, > 演算子で正しく比較できる（数値として比較される）                                                                                                                                                                 
+                                                                                                                                                                                                                            
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        0.599 s, estimated 1 s
+Ran all test suites matching /ch14\\ex04/i.

@@ -1,0 +1,13 @@
+〇実行結果
+(node:26276) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ PASS  ./index.test.js
+  makeProxyAndLogs関数                                                                                                                                                                                                      
+    console.logの結果を比較                                                                                                                                                                                                 
+      √ 結果を比較 (4 ms)                                                                                                                                                                                                   
+                                                                                                                                                                                                                            
+Test Suites: 1 passed, 1 total                                                                                                                                                                                              
+Tests:       1 passed, 1 total                                                                                                                                                                                              
+Snapshots:   0 total
+Time:        0.591 s, estimated 1 s
+Ran all test suites matching /ch14\\ex06/i.
