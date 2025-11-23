@@ -1,16 +1,17 @@
 <!doctype html>
 <html lang="ja">
   <head>
-    <title>Simple ToDo</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <script type="module" src="/ch15.01-03/ex01/index.js"></script>
+    <title>Simple ToDo</title><!-- タイトルを記載 -->
+    <meta charset="utf-8" /><!-- エンコーディングする文字列を記載 -->
+    <meta name="viewport" content="width=device-width" /><!-- 名前と説明を記載 -->
+    <!--<script type="module" src="/ch15.01-03/ex01/index.js"></script>-->
+    <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <form id="new-todo-form">
-      <input type="text" id="new-todo" placeholder="What needs to be done?" />
-      <button type="submit">Add</button>
-    </form>
-    <ul id="todo-list"></ul>
+    <form id="new-todo-form"><!--  HTML の要素で、ウェブサーバーに情報を送信するための対話型コントロールを含む文書の区間を表します -->
+      <input type="text" id="new-todo" placeholder="What needs to be done?" /><!-- テキストの入力欄 --><!-- ユーザーからデータを受け取るための、ウェブベースのフォーム用の操作可能なコントロールを作成するために使用します-->
+      <button type="submit">Add</button><!-- ボタン --><!-- HTML の要素で、マウス、キーボード、指、音声コマンド、その他の支援技術で起動することができる操作可能要素です -->
+    </form><!-- submitの場合、フォームのデータをサーバーに送信する。 -->
+    <ul id="todo-list"></ul><!-- HTML の要素で、項目の順序なしリストを表します。 -->
   </body>
 </html>

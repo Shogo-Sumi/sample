@@ -1,0 +1,117 @@
+〇実行結果
+ INFO  Gracefully shutting down. Please wait...
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch15.01-03\ex01> npx serve
+
+   ┌───────────────────────────────────────────┐
+   │                                           │
+   │   Serving!                                │
+   │                                           │
+   │   - Local:    http://localhost:3000       │
+   │   - Network:  http://192.168.0.121:3000   │
+   │                                           │
+   │   Copied local address to clipboard!      │
+   │                                           │
+   └───────────────────────────────────────────┘
+
+ HTTP  2025/11/23 16:05:19 ::1 GET /
+ HTTP  2025/11/23 16:05:19 ::1 Returned 304 in 18 ms
+ HTTP  2025/11/23 16:05:19 ::1 GET /index.js
+ HTTP  2025/11/23 16:05:19 ::1 Returned 200 in 5 ms
+
+〇moduleを削除した場合
+正常に動作しなくなった(要素の追加が表示されなくなった)
+
+type="module"に関する説明。
+https://qiita.com/Hachi_3/items/2aea0225a2b4b9315941
+type="module"属性を使用すると、ブラウザにこの<script>タグ内のJavaScriptコードがモジュールであることを伝えます。
+
+type="module"が記載されていない場合、
+1.import/exportが使用できなくなる
+2.スクリプトの実行タイミングがHTMLをブロックする。
+3.実行モードがstrict modeではなくなる等の変化がある。
+
+そのため、上記変化に合わせてソースコードを変更する必要がある。
+
+ 〇テスト実行結果
+テストを実行したが不合格となった。
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch15.01-03\ex01> npm install -D @playwright/test
+
+added 3 packages in 3s
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch15.01-03\ex01> npx playwright test
+
+Running 5 tests using 1 worker
+
+  ✘  1 index.spec.js:52:7 › simple todo app › no default todos (5ms)
+  ✘  2 index.spec.js:56:7 › simple todo app › add new todo (4ms)
+  ✘  3 index.spec.js:67:7 › simple todo app › add multiple todos (4ms)
+  ✘  4 index.spec.js:84:7 › simple todo app › delete todo (4ms)
+  ✘  5 index.spec.js:97:7 › simple todo app › complete todo (5ms)
+
+
+  1) index.spec.js:52:7 › simple todo app › no default todos ───────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\sumi6\AppData\Local\ms-playwright\chromium_headless_shell-1194\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+  2) index.spec.js:56:7 › simple todo app › add new todo ───────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\sumi6\AppData\Local\ms-playwright\chromium_headless_shell-1194\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+  3) index.spec.js:67:7 › simple todo app › add multiple todos ─────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\sumi6\AppData\Local\ms-playwright\chromium_headless_shell-1194\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+  4) index.spec.js:84:7 › simple todo app › delete todo ────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\sumi6\AppData\Local\ms-playwright\chromium_headless_shell-1194\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+  5) index.spec.js:97:7 › simple todo app › complete todo ──────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\sumi6\AppData\Local\ms-playwright\chromium_headless_shell-1194\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+  5 failed
+    index.spec.js:52:7 › simple todo app › no default todos ────────────────────────────────────────
+    index.spec.js:56:7 › simple todo app › add new todo ────────────────────────────────────────────
+    index.spec.js:67:7 › simple todo app › add multiple todos ──────────────────────────────────────
+    index.spec.js:84:7 › simple todo app › delete todo ─────────────────────────────────────────────
+    index.spec.js:97:7 › simple todo app › complete todo ───────────────────────────────────────────
