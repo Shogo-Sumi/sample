@@ -1,0 +1,25 @@
+〇実行結果
+画像ファイルを参考にしてください。
+
+〇動作の確認方法
+下記のように、serverとしてソースコードを実行し、ローカルサーバーのWeb画面上で文字列が赤くなっていることを確認した。
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch15.01-03\ex02> npx serve
+
+   ┌───────────────────────────────────────────┐
+   │                                           │
+   │   Serving!                                │
+   │                                           │
+   │   - Local:    http://localhost:3000       │
+   │   - Network:  http://192.168.0.121:3000   │
+   │                                           │
+   │   Copied local address to clipboard!      │
+   │                                           │
+   └───────────────────────────────────────────┘
+
+ HTTP  2025/11/23 18:59:10 ::1 GET /
+ HTTP  2025/11/23 18:59:10 ::1 Returned 304 in 4 ms
+ HTTP  2025/11/23 18:59:10 ::1 GET /index.js
+ HTTP  2025/11/23 18:59:10 ::1 Returned 200 in 2 ms
+
+ INFO  Gracefully shutting down. Please wait...

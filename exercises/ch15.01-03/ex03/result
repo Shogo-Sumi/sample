@@ -1,0 +1,16 @@
+〇ハッシュ値の確認
+PowerShellで確認
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch15.01-03\ex03> $hash = [System.Security.Cryptography.SHA384]::Create()
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch15.01-03\ex03> $bytes = $hash.ComputeHash([System.IO.File]::ReadAllBytes("C:\Users\sumi6\javascript\github\sample\exercises\ch15.01-03\ex03\index.js"))
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch15.01-03\ex03> "sha384-" + [Convert]::ToBase64String($bytes)
+sha384-A2yXlsSOlup5jLJMvcaZSnCLsXSlANNHo1Np9DCqcLbelO1u2n9pci+n2VAo3YxQ
+
+〇考察
+このようなセキュリティがあるとどのような攻撃を防御できるか
+
+・CDNについて
+CDNとは、「コンテンツ配信ネットワーク（Content Delivery Network）」の略で、ウェブサイトのコンテンツを高速かつ安定して配信するための、
+世界中に分散されたサーバー群です。ユーザーの最も近いサーバーからコンテンツを配信することで、通信の遅延やサーバーの負荷を軽減します。
+
+ハッシュ値が異なる場合、スクリプトは実行されないため、例えばCDNが改ざんされた場合に、悪意のあるスクリプトの実行を阻止することができると考える。
+また、通信の途中でスクリプトが改ざんされた場合も同様に実行を阻止できると考える。
