@@ -1,0 +1,73 @@
+1.グローバルオブジェクトを参照する方法
+参考：https://developer.mozilla.org/ja/docs/Glossary/Global_object
+https://note.com/sego_don01/n/n8449db75b3f9
+
+・ブラウザ内
+グローバル変数fooを定義した後、その値をwindowsオブジェクトから、変数名であるfooを使用し、
+グローバルオブジェクトwindow.fooのプロパティ名として直接アクセス可能。
+
+var foo = "foobar";
+foo === window.foo; // true を返す
+
+または、globalThisを使ったアクセスも可能
+環境に依存せずに実行可能である。
+
+globalThis.console.log('Hello');
+
+・node内
+
+globalThisを使ったアクセスが可能
+
+・ブラウザ、node問わず
+
+globalThisを使ったアクセスが可能
+
+2.グローバルオブジェクトのプロパティやメソッドを比較し、ブラウザ独自のものを10個程度
+
+参考：https://developer.mozilla.org/ja/docs/Web/API/Window
+
+Window.caches 読取専用 安全なコンテキスト用
+現在のコンテキストに関連付けられた CacheStorage オブジェクトを返します。このオブジェクトはオフラインで使用する資産を格納したり、リクエストに対して独自のレスポンスを生成したりするような機能が利用できます。
+
+Window.clientInformation 読取専用
+Window.navigator の別名です。
+
+Window.closed 読取専用
+このプロパティは、現在のウィンドウが閉じているかどうかを示します。
+
+Window.cookieStore 読取専用 安全なコンテキスト用
+現在の文書コンテキストの CookieStore オブジェクトへの参照を返します。
+
+Window.credentialless 読取専用 Experimental
+現在の文書が 無信頼の <iframe> 内で読み込まれたかどうかを示す論理値を返します。詳しくは無信頼の iframe を参照してください。
+
+Window.crossOriginIsolated 読取専用
+ウェブサイトがオリジン間分離状態にあるかどうかを示す論理値を返します。
+
+Window.crypto 読取専用
+グローバルオブジェクトに関連付けられた Crypto オブジェクトを返します。
+
+Window.customElements 読取専用
+CustomElementRegistry オブジェクトへの参照を返します。これは新しいカスタム要素の登録や、以前に登録したカスタム要素の情報を取得するために使用できます。
+
+Window.devicePixelRatio 読取専用
+現在のディスプレイの、物理ピクセルと端末非依存ピクセルの比率を返します。
+
+Window.document 読取専用
+指定ウィンドウにある文書への参照を返します。
+
+
+
+3.グローバルオブジェクトにudefinedが定義されていることを確認。過去のES使用でどのような問題が起きていたか記載。
+
+console.log(globalThis.hasOwnProperty('undefined'));
+console.log(globalThis.undefined === undefined); 
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch15.01-03\ex04> node index.js
+true
+true
+
+参考書P61 未定義変数の使用から
+非strictモードでは、グローバル変数をundefinedから書き換え可能、削除可能だった。
+よって、typeof x === 'undefined' といった、グローバルオブジェクトを期待しての判定が、実行環境によって
+は上書きされていたと考える。

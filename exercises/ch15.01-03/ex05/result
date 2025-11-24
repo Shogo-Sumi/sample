@@ -1,0 +1,43 @@
+〇問題
+自分の環境だと、ソースコードを変更する魔の状態で実行しても、helloが表示されなかったため確認ができない。
+
+実施手順
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch15.01-03\ex05> pwd
+
+Path
+----
+C:\Users\sumi6\javascript\github\sample\exercises\ch15.01-03\ex05
+
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch15.01-03\ex05> ls
+
+
+    ディレクトリ: C:\Users\sumi6\javascript\github\sample\exercises\ch15.01-03\ex05
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2025/11/24     13:30          36308 index1.html
+-a----        2025/04/16     15:31             77 index1.js
+-a----        2025/11/24     13:29          36037 index2.html
+-a----        2025/04/16     15:31             54 index2.js
+-a----        2025/11/24     13:31            167 result
+
+
+PS C:\Users\sumi6\javascript\github\sample\exercises\ch15.01-03\ex05> npx serve
+
+   ┌───────────────────────────────────────────┐
+   │                                           │
+   │   Serving!                                │
+   │                                           │
+   │   - Local:    http://localhost:3000       │
+   │   - Network:  http://192.168.0.121:3000   │
+   │                                           │
+   │   Copied local address to clipboard!      │
+   │                                           │
+   └───────────────────────────────────────────┘
+
+ HTTP  2025/11/24 13:31:59 ::1 GET /
+ HTTP  2025/11/24 13:31:59 ::1 Returned 200 in 23 ms
+
+ http://localhost:3000にアクセスし、index1.html、index2.htmlにアクセスしたが、30秒ほど待ってもhelloは表示されなかった。
