@@ -1,0 +1,22 @@
+
+npx serve実行時にスクリプトの実行が無効になっているためエラーが発生
+
+https://zenn.dev/takuya_zenn/articles/30394f9aa58427
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+
+
+PS C:\Program Files\Git\github\exercises-public\exercises\ch15.01-03\ex07> npm serve
+npm : このシステムではスクリプトの実行が無効になっているため、ファイル C:\Program Files\nodejs\npm.ps1 を読み込むことができません。詳細については、「about_Execution_Policies」(https://go.microsoft.c
+om/fwlink/?LinkID=135170) を参照してください。
+発生場所 行:1 文字:1
++ npm serve
++ ~~~
+    + CategoryInfo          : セキュリティ エラー: (: ) []、PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess
+PS C:\Program Files\Git\github\exercises-public\exercises\ch15.01-03\ex07> Get-ExecutionPolicy
+Restricted
+PS C:\Program Files\Git\github\exercises-public\exercises\ch15.01-03\ex07> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+PS C:\Program Files\Git\github\exercises-public\exercises\ch15.01-03\ex07> Get-ExecutionPolicy
+RemoteSigned
+PS C:\Program Files\Git\git
