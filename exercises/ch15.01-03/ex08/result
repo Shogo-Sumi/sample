@@ -1,0 +1,14 @@
+〇脆弱性の例
+
+・意図しないメッセージの表示
+{
+  "name": "<p1>意図しないメッセージを表示</p1>",
+  "age": 50
+}
+
+・別サイトへの誘導
+{
+    "name": "<iframe src='https://www.google.com/?hl=ja' width='100%' height='500'>",
+    "age": 50
+}
+
