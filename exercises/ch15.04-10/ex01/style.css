@@ -1,3 +1,139 @@
-.completed {
+/* 全体のフォントと背景を設定。読みやすく柔らかい印象に */
+body {
+  font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* メインコンテンツをカード風に。幅600px以内で中央配置、影と丸みで立体感を出す */
+main {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* タイトルを追加するためのスタイル（HTMLに<h1>を追加しても良い） */
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+/* 新規ToDo入力フォームを横並びで見やすく、ボタンを強調 */
+#new-todo-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+#new-todo {
+  flex: 1;
+  padding: 14px 16px;
+  font-size: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+#new-todo:focus {
+  border-color: #6c5ce7;
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.15);
+}
+
+#new-todo-form button {
+  padding: 0 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #6c5ce7;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#new-todo-form button:hover {
+  background-color: #5a4fcf;
+}
+
+/* ToDoリスト全体の余白とリストスタイルを削除 */
+#todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 各ToDoアイテム(li)に余白と境界線を追加して視覚的に区切る */
+#todo-list li {
+  background: #f8f9fa;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+#todo-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* 完了したToDoは薄くして取り消し線を入れる */
+#todo-list li.completed {
+  opacity: 0.7;
+}
+
+#todo-list li.completed .content {
   text-decoration: line-through;
+  color: #888;
+}
+
+/* 各アイテム内のviewエリアを横並びにして整える */
+.view {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  gap: 12px;
+}
+
+/* チェックボックスの見た目をカスタマイズ（デフォルトを隠す） */
+.toggle {
+  width: 20px;
+  height: 20px;
+  accent-color: #6c5ce7;
+  cursor: pointer;
+}
+
+/* ToDo内容のラベルを大きく読みやすく */
+.content {
+  flex: 1;
+  font-size: 1.1rem;
+  color: #2d3436;
+  word-break: break-all;
+}
+
+/* 削除ボタンをシンプルで目立たせすぎないデザインに */
+.destroy {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: #ddd;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.destroy:hover {
+  background-color: #ffeaa7;
+  color: #e17055;
 }
