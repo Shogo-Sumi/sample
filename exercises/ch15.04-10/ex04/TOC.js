@@ -70,7 +70,28 @@
     link.href = `#${fragmentName}`;
     link.innerHTML = heading.innerHTML;
 
-    let entry = document.createElement("div");
+    //コード追加　問題文例
+
+    link.addEventListener("click", (e) => {
+  e.preventDefault();
+  const targetAnchor = document.querySelector(`a[name="${fragmentName}"]`);
+  if (!targetAnchor) return;
+
+  const heading = targetAnchor.firstElementChild;
+  if (heading) {
+    //コード追加　課題
+    //目次を選択した時にスムーズに遷移する
+    //scrollIntoViewを使用
+    //https://developer.mozilla.org/ja/docs/Web/API/Element/scrollIntoView
+    heading.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+    //ブラウザのURL履歴に追加し戻るボタンに対応
+    //https://qiita.com/PianoScoreJP/items/fa66f357419fece0e531
+  history.pushState(null, null, `#${fragmentName}`);
+});
+
+let entry = document.createElement("div");
     entry.classList.add("TOCEntry", `TOCLevel${level}`);
     entry.append(link);
     toc.append(entry);
