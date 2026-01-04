@@ -41,11 +41,25 @@ form.addEventListener("submit", (e) => {
   input.value = "";
 
   todos.push({ content: todo, completed: false });
+  window.location.hash = "#/";//addが押されたらALLビューへ戻す。
+  //javascriptでURLのハッシュ部分を取得する。https://osgsm.io/note/js-location-hash/
   renderTodos(todos);
 });
 
 window.addEventListener("hashchange", () => {
   // ここを実装してね
+  const hash = window.location.hash || "#/";//URLのハッシュ部分が変更したと筋処理
+
+  let filteredTodos = todos;//todosの値を代入
+
+  if (hash === "#/active") {//hashの値がactiveの場合
+    filteredTodos = todos.filter(todo => !todo.completed);//todo.completedがfalseの者だけ残す
+  } else if (hash === "#/completed") {//hashの値がcompletedの場合
+    filteredTodos = todos.filter(todo => todo.completed);//todo.completedがtrueの者だけ残す
+  }
+  // hash === "#/" またはその他の場合は全て表示（filteredTodos = todos のまま）
+
+  renderTodos(filteredTodos);//再描画を実施
 });
 
 function deleteTodo(content) {
